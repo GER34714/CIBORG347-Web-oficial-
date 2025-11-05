@@ -1,126 +1,435 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ciborg347™ | Landing Pages & Web Designs</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ciborg347™ | Landing Pages & Web Designs</title>
+<link rel="icon" type="image/png" href="https://iili.io/KHOiff9.md.png">
+<meta property="og:title" content="Ciborg347™ | Landing Pages & Web Designs">
+<meta property="og:description" content="Landing Pages modernas, optimizadas y con estilo. 🚀">
+<meta property="og:image" content="https://iili.io/KHOiff9.md.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://iili.io/KHOiff9.md.png">
+<style>
+body {
+  margin: 0;
+  font-family: 'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif;
+  background: #0a0a0a;
+  color: #fff;
+  text-align: center;
+  scroll-behavior: smooth;
+}
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Ciborg347™ | Landing Pages & Web Designs">
-  <meta property="og:description" content="Landing Pages modernas, optimizadas y con estilo. 🚀">
-  <meta property="og:image" content="https://iili.io/KHOiff9.md.png">
-  <meta property="og:type" content="website">
+/* NAVBAR */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+  margin: 0;
+  padding: 0;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #39ff14;
+  font-weight: bold;
+  font-size: 1.1rem;
+  position: relative;
+  transition: color 0.3s;
+}
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #39ff14;
+  transition: width 0.3s;
+}
+nav ul li a:hover::after,
+nav ul li a.active::after {
+  width: 100%;
+}
+nav ul li a:hover { color: #00f7ff; }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: #39ff14;
+  transition: 0.3s;
+}
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
+/* LOGO */
+.logo {
+  margin: 120px 0 50px;
+}
+.logo img {
+  width: 260px;
+  filter: drop-shadow(0 0 15px #39ff14);
+  animation: neonPulse 3s infinite alternate;
+  transition: 0.3s;
+}
+.logo img:hover { transform: scale(1.08); }
+@keyframes neonPulse {
+  0% { filter: drop-shadow(0 0 10px #39ff14); }
+  25% { filter: drop-shadow(0 0 15px #00f7ff); }
+  50% { filter: drop-shadow(0 0 15px #ff00ff); }
+  75% { filter: drop-shadow(0 0 15px #8a2be2); }
+  100% { filter: drop-shadow(0 0 10px #39ff14); }
+}
 
-  <!-- Estilos -->
-  <link rel="stylesheet" href="style.css">
+/* SECCIONES */
+section { padding: 80px 20px; max-width: 1100px; margin: auto; }
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #39ff14;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+h3 { color: #00f7ff; margin-bottom: 15px; }
+p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
+
+/* LIKE BUTTON */
+.like-section { margin-top: 30px; }
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(57, 255, 20, 0.1);
+  border: 2px solid #39ff14;
+  border-radius: 30px;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #39ff14;
+  font-weight: bold;
+  transition: all 0.3s;
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+}
+.like-btn:hover {
+  background: #39ff14;
+  color: #000;
+  box-shadow: 0 0 20px #39ff14;
+  transform: scale(1.05);
+}
+.like-btn img {
+  width: 22px;
+  height: 22px;
+  filter: drop-shadow(0 0 4px #39ff14);
+}
+
+/* GALERÍA */
+.examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+.project {
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,255,128,0.3);
+  padding: 10px;
+  transition: 0.3s;
+  position: relative;
+}
+.project:hover { transform: scale(1.05); }
+.preview-label {
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  font-size: 0.7rem;
+  color: rgba(57,255,20,0.7);
+  text-shadow: 0 0 6px rgba(57,255,20,0.6);
+  font-weight: bold;
+  pointer-events: none;
+}
+.project img {
+  width: 100%;
+  height: 110px;
+  object-fit: contain;
+  background: rgba(0,0,0,0.6);
+  border-radius: 8px;
+  border: 2px solid #39ff14;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.project img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #39ff14;
+}
+.project a {
+  display: block;
+  margin-top: 8px;
+  color: #39ff14;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+.project a:hover { color: #00f7ff; }
+
+/* LIGHTBOX */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.lightbox-content {
+  background: rgba(15,15,15,0.9);
+  padding: 20px 30px;
+  border-radius: 16px;
+  box-shadow: 0 0 25px #39ff14;
+  max-width: 420px;
+  text-align: center;
+  animation: fadeIn .4s ease;
+}
+.lightbox-content img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border: 2px solid #39ff14;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #39ff14;
+}
+.lightbox .caption { margin-top: 10px; color: #39ff14; font-weight: bold; }
+.lightbox .view-btn {
+  margin-top: 10px;
+  display: inline-block;
+  background: #39ff14;
+  color: #000;
+  padding: 8px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 0 10px #39ff14;
+  transition: .3s;
+}
+.lightbox .view-btn:hover { background: #00f7ff; box-shadow: 0 0 20px #00f7ff; }
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #39ff14;
+  cursor: pointer;
+  user-select: none;
+  padding: 10px;
+  transition: .3s;
+}
+.nav-btn:hover { color: #00f7ff; }
+.prev { left: 20px; }
+.next { right: 20px; }
+@keyframes fadeIn { from { opacity: 0; transform: scale(.8); } to { opacity: 1; transform: scale(1); } }
+
+/* CONTACTO */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
+}
+.contact-links a {
+  text-decoration: none;
+  color: #39ff14;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+.contact-links a:hover { color: #00f7ff; }
+.contact-links img {
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 0 5px #39ff14);
+}
+
+/* WHATSAPP FLOTANTE */
+.whatsapp-float {
+  position: fixed;
+  bottom: 60px;
+  right: 22px;
+  z-index: 999;
+}
+.whatsapp-float img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0,255,0,0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.whatsapp-float img:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 20px rgba(0,255,0,0.8);
+}
+
+/* FOOTER */
+footer {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 40px;
+}
+
+/* RESPONSIVE MENU (IZQUIERDA) */
+@media (max-width: 768px) {
+  nav ul {
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    flex-direction: column;
+    gap: 18px;
+    display: none;
+    width: 70%;
+    text-align: left;
+    background: transparent;
+    padding: 20px 15px;
+  }
+  nav ul.active { display: flex; }
+  nav ul li a {
+    color: #39ff14;
+    font-size: 1rem;
+    text-shadow: 0 0 8px #39ff14;
+  }
+  .hamburger { display: flex; }
+}
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="hamburger" onclick="toggleMenu()">
-      <div></div><div></div><div></div>
-    </div>
-    <ul id="nav-links">
-      <li><a href="#quienes" class="active">Quiénes Somos</a></li>
-      <li><a href="#ejemplos">Ejemplos</a></li>
-      <li><a href="#valores">Presupuesto</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-  </nav>
+<nav>
+  <div class="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
+  <ul id="nav-links">
+    <li><a href="#quienes" class="active">Quiénes Somos</a></li>
+    <li><a href="#ejemplos">Ejemplos</a></li>
+    <li><a href="#valores">Presupuesto</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
 
-  <!-- LOGO -->
-  <div class="logo">
-    <img src="https://iili.io/KHOiff9.md.png" alt="Ciborg347™">
-  </div>
+<div class="logo">
+  <img src="https://iili.io/KHOiff9.md.png" alt="Ciborg347™">
+</div>
 
-  <!-- SECCIÓN QUIÉNES SOMOS -->
-  <section id="quienes">
-    <h2>¿Quiénes Somos?</h2>
-    <p>En <b>Ciborg347™</b> transformamos ideas en experiencias digitales ⚡. Diseñamos <b>Landing Pages</b> potentes, rápidas y con estética única — creadas para captar, convencer y convertir 🚀.</p>
-  </section>
+<section id="quienes">
+  <h2>¿Quiénes Somos?</h2>
+  <p>En <b>Ciborg347™</b> transformamos ideas en experiencias digitales ⚡. Diseñamos <b>Landing Pages</b> potentes, rápidas y con estética única — creadas para captar, convencer y convertir 🚀.</p>
+</section>
 
-  <!-- SECCIÓN EJEMPLOS -->
-  <section id="ejemplos">
-    <h2>Ejemplos de Landings</h2>
+<section id="ejemplos">
+  <h2>Ejemplos de Landings</h2>
 
-    <h3>🎰 Casinos</h3>
-    <div class="examples gallery">
-      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPygQXS.jpg" data-link="https://facucasino.onrender.com/" data-title="Facu Casino™"><a href="https://facucasino.onrender.com/" target="_blank">Facu Casino™</a></div>
-      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyrMj2.jpg" data-link="https://dragon-casino.onrender.com/" data-title="Dragon Casino™"><a href="https://dragon-casino.onrender.com/" target="_blank">Dragon Casino™</a></div>
-      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyDVHP.jpg" data-link="https://dinasty-bet.onrender.com/" data-title="Dynasty Bet™"><a href="https://dinasty-bet.onrender.com/" target="_blank">Dynasty Bet™</a></div>
-      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KigNdVS.jpg" data-link="https://giraygana-fortunaplay.onrender.com/" data-title="Gira y Gana™"><a href="https://giraygana-fortunaplay.onrender.com/" target="_blank">Gira y Gana™</a></div>
-      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/Kigv3Ij.jpg" data-link="https://ganamostodosjuntos.onrender.com/" data-title="Fortuna Play™"><a href="https://ganamostodosjuntos.onrender.com/" target="_blank">Fortuna Play™</a></div>
-      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KiggTcN.jpg" data-link="https://lions-casino.onrender.com/" data-title="Lions Casino™"><a href="https://lions-casino.onrender.com/" target="_blank">Lions Casino™</a></div>
-    </div>
+  <h3>🎰 Casinos</h3>
+  <div class="examples gallery">
+    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPygQXS.jpg" data-link="https://facucasino.onrender.com/" data-title="Facu Casino™"><a href="https://facucasino.onrender.com/" target="_blank">Facu Casino™</a></div>
+    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyrMj2.jpg" data-link="https://dragon-casino.onrender.com/" data-title="Dragon Casino™"><a href="https://dragon-casino.onrender.com/" target="_blank">Dragon Casino™</a></div>
+    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyDVHP.jpg" data-link="https://dinasty-bet.onrender.com/" data-title="Dynasty Bet™"><a href="https://dinasty-bet.onrender.com/" target="_blank">Dynasty Bet™</a></div>
 
-    <h3>💈 Barberías</h3>
-    <div class="examples gallery">
-      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyvEcx.jpg" data-link="https://barberia-elbebu.onrender.com/" data-title="Barber 99"><a href="https://barberia-elbebu.onrender.com/" target="_blank">Barber 99</a></div>
-      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyUCn1.jpg" data-link="https://barber-shop-rodri.onrender.com/" data-title="Barber Shop Rodri"><a href="https://barber-shop-rodri.onrender.com/" target="_blank">Barber Shop Rodri</a></div>
-    </div>
+    <!-- 🔥 NUEVAS LANDINGS AGREGADAS -->
+    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KigNdVS.jpg" data-link="https://giraygana-fortunaplay.onrender.com/" data-title="Gira y Gana™"><a href="https://giraygana-fortunaplay.onrender.com/" target="_blank">Gira y Gana™</a></div>
 
-    <h3>💅 Estética & Uñas</h3>
-    <div class="examples gallery">
-      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyCnHu.jpg" data-link="https://adda-nails.onrender.com/" data-title="Adda Nails"><a href="https://adda-nails.onrender.com/" target="_blank">Adda Nails</a></div>
-    </div>
-  </section>
+    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/Kigv3Ij.jpg" data-link="https://ganamostodosjuntos.onrender.com/" data-title="Fortuna Play™"><a href="https://ganamostodosjuntos.onrender.com/" target="_blank">Fortuna Play™</a></div>
 
-  <!-- SECCIÓN VALORES -->
-  <section id="valores">
-    <h2>Presupuesto Personalizado</h2>
-    <p>💼 En <b>Ciborg347™</b> cada cliente es único, y su proyecto también. No usamos plantillas vacías ni precios estándar: <b>creamos tu web a medida</b>, pensada según tu negocio, tu estilo y tu público.<br><br>🚀 Vos contanos qué querés lograr, nosotros te enviamos una propuesta profesional, clara y sin vueltas.<br><br>💬 <b>Pedí tu presupuesto personalizado</b> y descubrí lo que una web bien hecha puede hacer por tu marca.<br><br>⚡ <b>Ciborg347™</b> — donde el diseño y la estrategia se combinan para generar resultados reales.</p>
-  </section>
+    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KiggTcN.jpg" data-link="https://lions-casino.onrender.com/" data-title="Lions Casino™"><a href="https://lions-casino.onrender.com/" target="_blank">Lions Casino™</a></div>
+  </div>
 
-  <!-- CONTACTO -->
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <div class="contact-links">
+  <h3>💈 Barberías</h3>
+  <div class="examples gallery">
+    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyvEcx.jpg" data-link="https://barberia-elbebu.onrender.com/" data-title="Barber 99"><a href="https://barberia-elbebu.onrender.com/" target="_blank">Barber 99</a></div>
+    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyUCn1.jpg" data-link="https://barber-shop-rodri.onrender.com/" data-title="Barber Shop Rodri"><a href="https://barber-shop-rodri.onrender.com/" target="_blank">Barber Shop Rodri</a></div>
+  </div>
 
-      <!-- WhatsApp -->
-      <a href="https://wa.me/541164499481?text=Hola%20👋,%20vi%20tus%20servicios%20y%20quería%20una%20Landing%20Page%20personalizada%20para%20mi%20negocio%20🚀" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"> WhatsApp
-      </a>
+  <h3>💅 Estética & Uñas</h3>
+  <div class="examples gallery">
+    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyCnHu.jpg" data-link="https://adda-nails.onrender.com/" data-title="Adda Nails"><a href="https://adda-nails.onrender.com/" target="_blank">Adda Nails</a></div>
+  </div>
+</section>
 
-      <!-- Email -->
-      <a href="mailto:ciborg347@gmail.com?subject=Landing%20Page%20Personalizada&body=Hola%20👋,%20vi%20tus%20servicios%20y%20me%20gustaría%20una%20Landing%20Page%20para%20mi%20negocio%20🚀">
-        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email"> Email
-      </a>
+<section id="valores">
+  <h2>Presupuesto Personalizado</h2>
+  <p>💼 En <b>Ciborg347™</b> cada cliente es único, y su proyecto también. No usamos plantillas vacías ni precios estándar: <b>creamos tu web a medida</b>, pensada según tu negocio, tu estilo y tu público.<br><br>🚀 Vos contanos qué querés lograr, nosotros te enviamos una propuesta profesional, clara y sin vueltas.<br><br>💬 <b>Pedí tu presupuesto personalizado</b> y descubrí lo que una web bien hecha puede hacer por tu marca.<br><br>⚡ <b>Ciborg347™</b> — donde el diseño y la estrategia se combinan para generar resultados reales.</p>
+</section>
 
-      <!-- Instagram -->
-      <a href="https://instagram.com/ciborg347" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"> Instagram
-      </a>
+<section id="contacto">
+  <h2>Contacto</h2>
+  <div class="contact-links">
+    <a href="https://wa.me/541164499481" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> WhatsApp</a>
+    <a href="mailto:ciborg347@gmail.com"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png"> Email</a>
+    <a href="https://instagram.com/ciborg347" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"> Instagram</a>
+  </div>
+</section>
 
-    </div>
-  </section>
+<a href="https://wa.me/541164499481?text=Hola%20Ciborg347!" class="whatsapp-float" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
 
-  <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/541164499481?text=Hola%20👋,%20vi%20tus%20servicios%20y%20quería%20una%20Landing%20Page%20personalizada%20para%20mi%20negocio%20🚀" class="whatsapp-float" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-  </a>
+<footer>© 2025 Ciborg347™ - Landing Pages & Web Designs</footer>
 
-  <!-- FOOTER -->
-  <footer>© 2025 Ciborg347™ - Landing Pages & Web Designs</footer>
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+  <span class="nav-btn prev" onclick="changeSlide(-1)">❮</span>
+  <div class="lightbox-content">
+    <img id="lightbox-img" src="">
+    <div class="caption" id="lightbox-title"></div>
+    <a id="lightbox-link" class="view-btn" href="#" target="_blank">Ver landing completa</a>
+  </div>
+  <span class="nav-btn next" onclick="changeSlide(1)">❯</span>
+</div>
 
-  <!-- LIGHTBOX -->
-  <div id="lightbox" class="lightbox">
-    <span class="nav-btn prev" onclick="changeSlide(-1)">❮</span>
-    <div class="lightbox-content">
-      <img id="lightbox-img" src="">
-      <div class="caption" id="lightbox-title"></div>
-      <a id="lightbox-link" class="view-btn" href="#" target="_blank">Ver landing completa</a>
-    </div>
-    <sp
-an class="nav-btn next" onclick="changeSlide(1)">❯</span>
-  </div>
+<script>
+const navMenu = document.getElementById("nav-links");
+const navLinks = navMenu.querySelectorAll("a");
+function toggleMenu() { navMenu.classList.toggle("active"); }
+navLinks.forEach(link => link.addEventListener("click", () => navMenu.classList.remove("active")));
 
-  <script src="script.js"></script>
+// ---- LIGHTBOX ----
+const galleryItems = document.querySelectorAll(".gallery img");
+let currentIndex = 0;
+galleryItems.forEach((img, i) => { img.addEventListener("click", () => openGallery(i)); });
+function openGallery(i) {
+  currentIndex = i;
+  const img = galleryItems[i];
+  document.getElementById("lightbox-img").src = img.src;
+  document.getElementById("lightbox-title").textContent = img.dataset.title;
+  const link = document.getElementById("lightbox-link");
+  link.href = img.dataset.link;
+  link.textContent = "Ver landing completa (" + img.dataset.title + ")";
+  document.getElementById("lightbox").style.display = "flex";
+}
+function changeSlide(step) {
+  currentIndex = (currentIndex + step + galleryItems.length) % galleryItems.length;
+  openGallery(currentIndex);
+}
+document.getElementById("lightbox").addEventListener("click", (e) => {
+  if (e.target.id === "lightbox") document.getElementById("lightbox").style.display = "none";
+});
+</script>
 </body>
 </html>
