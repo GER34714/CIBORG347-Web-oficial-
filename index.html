@@ -14,21 +14,62 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* Logo grande */
-    .logo img {width:200px; margin:40px auto 10px; display:block;}
+    html {scroll-behavior:smooth;}
+    body {margin:0; background:#000; color:#fff; font-family:'Arial',sans-serif;}
 
-    /* Fade in */
+    /* NAV */
+    nav {
+      background:transparent;
+      padding:8px 15px;
+      position:fixed;
+      width:100%;
+      top:0;
+      z-index:999;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .hamburger {display:flex; flex-direction:column; cursor:pointer; width:28px; gap:5px;}
+    .hamburger div {height:3px; background:#fff; border-radius:5px;}
+    #nav-links {
+      list-style:none; margin:0; padding:0;
+      display:flex; gap:25px; justify-content:center; align-items:center;
+    }
+    #nav-links a {
+      color:#fff; text-decoration:none; font-weight:600; font-size:15px; transition:.3s;
+    }
+    #nav-links a:hover {color:#9b6cff;}
+
+    @media(max-width:768px){
+      #nav-links {
+        display:none; flex-direction:column;
+        background:rgba(0,0,0,0.9);
+        position:absolute; top:50px; left:0; width:100%;
+        padding:15px 0; text-align:center;
+      }
+      #nav-links.show {display:flex;}
+    }
+
+    /* Logo */
+    .logo img {width:190px; display:block; margin:90px auto 25px; animation:fadeIn 1.2s ease;}
+    @keyframes fadeIn {from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+
+    /* Fade-in */
     .fade-in {opacity:0; transform:translateY(30px); transition:all .8s ease;}
     .fade-in.visible {opacity:1; transform:translateY(0);}
 
-    /* Reseñas */
+    /* Secciones */
+    section {padding:50px 20px; text-align:center;}
+    section h2 {color:#9b6cff; text-shadow:0 0 10px #9b6cff; margin-bottom:15px;}
+
+    /* Cards / reseñas */
     .review-card {
       background:#111; border-radius:15px; padding:20px; max-width:300px; margin:10px;
       box-shadow:0 0 15px #9b6cff30; color:#ddd; font-size:.95em; text-align:left;
     }
     .review-card h4 {color:#9b6cff; margin-top:10px; font-weight:600;}
 
-    /* Vistas previas */
+    /* Galería */
     .preview-label {
       position:absolute; top:8px; left:8px;
       background:#9b6cff; color:#fff; font-size:12px;
@@ -38,6 +79,7 @@
     .project {position:relative; overflow:hidden; border-radius:10px; cursor:pointer;}
     .project img {width:100%; transition:transform .3s ease;}
     .project:hover img {transform:scale(1.05);}
+    .gallery {display:flex; flex-wrap:wrap; justify-content:center; gap:15px;}
 
     /* Lightbox */
     .lightbox {
@@ -50,21 +92,8 @@
       display:inline-block; margin-top:10px; background:#9b6cff; color:#fff; padding:10px 18px;
       border-radius:8px; text-decoration:none; font-weight:bold; box-shadow:0 0 15px #9b6cff80;
     }
-    .nav-btn {position:absolute; top:50%; transform:translateY(-50%); font-size:2em; color:#fff; cursor:pointer; user-select:none;}
+    .nav-btn {position:absolute; top:50%; transform:translateY(-50%); font-size:2em; color:#fff; cursor:pointer;}
     .prev {left:25px;} .next {right:25px;}
-
-    /* Menú hamburguesa */
-    nav {background:#000; padding:10px; position:fixed; width:100%; top:0; z-index:999;}
-    .hamburger {display:flex; flex-direction:column; cursor:pointer; width:30px; gap:5px;}
-    .hamburger div {height:3px; background:#fff; border-radius:5px;}
-    #nav-links {
-      list-style:none; margin:0; padding:0; display:flex; gap:25px; justify-content:center;
-    }
-    #nav-links a {color:#fff; text-decoration:none; font-weight:600;}
-    @media(max-width:768px){
-      #nav-links {display:none; flex-direction:column; background:#111; position:absolute; top:55px; left:0; width:100%; padding:15px 0;}
-      #nav-links.show {display:flex;}
-    }
   </style>
 </head>
 <body>
@@ -73,7 +102,7 @@
   <nav>
     <div class="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
     <ul id="nav-links">
-      <li><a href="#inicio" class="active">Inicio</a></li>
+      <li><a href="#inicio">Inicio</a></li>
       <li><a href="#quienes">Nosotros</a></li>
       <li><a href="#ejemplos">Proyectos</a></li>
       <li><a href="#resenas">Opiniones</a></li>
@@ -88,7 +117,7 @@
   </div>
 
   <!-- HERO -->
-  <section id="inicio" class="fade-in" style="text-align:center; padding:20px 20px 60px;">
+  <section id="inicio" class="fade-in">
     <h1 style="font-size:2.3em; color:#9b6cff; text-shadow:0 0 10px #9b6cff;">Landing Pages que generan resultados ⚡</h1>
     <p style="max-width:650px; margin:auto; font-size:1.1em;">
       En <b>Ciborg347™</b> transformamos ideas en <b>experiencias digitales únicas</b>.  
@@ -96,7 +125,7 @@
     </p>
     <a href="https://wa.me/541164499481?text=Hola%20👋,%20quiero%20una%20Landing%20Page%20personalizada%20para%20mi%20negocio%20🚀"
        target="_blank"
-       style="display:inline-block; margin-top:25px; background:#9b6cff; padding:12px 25px; color:#fff; border-radius:10px; font-weight:bold; text-decoration:none; box-shadow:0 0 15px #9b6cff;">
+       style="display:inline-block; margin-top:20px; background:#9b6cff; padding:10px 25px; color:#fff; border-radius:10px; font-weight:bold; text-decoration:none; box-shadow:0 0 15px #9b6cff;">
        💬 Pedí tu landing ahora
     </a>
   </section>
@@ -114,26 +143,23 @@
   <!-- PROYECTOS -->
   <section id="ejemplos" class="fade-in">
     <h2>Proyectos Destacados</h2>
-    <p style="color:#aaa; margin-bottom:25px;">Algunos de los diseños que ya están generando impacto 🚀</p>
+    <p style="color:#aaa; margin-bottom:20px;">Algunos de los diseños que ya están generando impacto 🚀</p>
 
     <h3>🎰 Casinos / Promocionales</h3>
-    <div class="examples gallery">
+    <div class="gallery">
       <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPygQXS.jpg" data-link="https://facucasino.onrender.com/" data-title="Facu Casino™"><a href="https://facucasino.onrender.com/" target="_blank">Facu Casino™</a></div>
       <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyrMj2.jpg" data-link="https://dragon-casino.onrender.com/" data-title="Dragon Casino™"><a href="https://dragon-casino.onrender.com/" target="_blank">Dragon Casino™</a></div>
       <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyDVHP.jpg" data-link="https://dinasty-bet.onrender.com/" data-title="Dynasty Bet™"><a href="https://dinasty-bet.onrender.com/" target="_blank">Dynasty Bet™</a></div>
-      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KigNdVS.jpg" data-link="https://giraygana-fortunaplay.onrender.com/" data-title="Gira y Gana™"><a href="https://giraygana-fortunaplay.onrender.com/" target="_blank">Gira y Gana™</a></div>
-      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/Kigv3Ij.jpg" data-link="https://ganamostodosjuntos.onrender.com/" data-title="Fortuna Play™"><a href="https://ganamostodosjuntos.onrender.com/" target="_blank">Fortuna Play™</a></div>
-      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KiggTcN.jpg" data-link="https://lions-casino.onrender.com/" data-title="Lions Casino™"><a href="https://lions-casino.onrender.com/" target="_blank">Lions Casino™</a></div>
     </div>
 
     <h3>💈 Barberías</h3>
-    <div class="examples gallery">
+    <div class="gallery">
       <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyvEcx.jpg" data-link="https://barberia-elbebu.onrender.com/" data-title="Barber 99"><a href="https://barberia-elbebu.onrender.com/" target="_blank">Barber 99</a></div>
       <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyUCn1.jpg" data-link="https://barber-shop-rodri.onrender.com/" data-title="Barber Shop Rodri"><a href="https://barber-shop-rodri.onrender.com/" target="_blank">Barber Shop Rodri</a></div>
     </div>
 
     <h3>💅 Estética & Uñas</h3>
-    <div class="examples gallery">
+    <div class="gallery">
       <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyCnHu.jpg" data-link="https://adda-nails.onrender.com/" data-title="Adda Nails"><a href="https://adda-nails.onrender.com/" target="_blank">Adda Nails</a></div>
     </div>
   </section>
@@ -150,22 +176,12 @@
   </div>
 
   <!-- OPINIONES -->
-  <section id="resenas" class="fade-in" style="text-align:center; padding:70px 20px; background:#0a0a0a;">
-    <h2 style="color:#9b6cff; text-shadow:0 0 10px #9b6cff;">Opiniones Reales 💬</h2>
-    <div style="display:flex; flex-wrap:wrap; justify-content:center; margin-top:40px;">
-      <div class="review-card">
-        “Mi landing de barbería quedó tremenda. Los clientes llegan por el link directo, todo claro y rápido.”  
-        <h4>Rodri — Barber Shop Rodri 💈</h4>
-      </div>
-      <div class="review-card">
-        “Excelente atención, cumplieron con los tiempos y el diseño quedó moderno. Muy buena experiencia.”  
-        <h4>Adda — Adda Nails 💅</h4>
-      </div>
-      <div class="review-card">
-        “Ciborg me ayudó a profesionalizar la imagen de mi radio.  
-        El diseño transmite justo lo que quería 🎧.”  
-        <h4>Carlos — Radio Imagen™</h4>
-      </div>
+  <section id="resenas" class="fade-in" style="background:#0a0a0a;">
+    <h2>Opiniones Reales 💬</h2>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; margin-top:25px;">
+      <div class="review-card">“Mi landing de barbería quedó tremenda. Los clientes llegan por el link directo, todo claro y rápido.”<h4>Rodri — Barber Shop Rodri 💈</h4></div>
+      <div class="review-card">“Excelente atención, cumplieron con los tiempos y el diseño quedó moderno. Muy buena experiencia.”<h4>Adda — Adda Nails 💅</h4></div>
+      <div class="review-card">“Ciborg me ayudó a profesionalizar la imagen de mi radio. El diseño transmite justo lo que quería 🎧.”<h4>Carlos — Radio Imagen™</h4></div>
     </div>
   </section>
 
@@ -181,7 +197,7 @@
     </p>
     <a href="https://wa.me/541164499481?text=Hola%20👋,%20quiero%20pedir%20mi%20presupuesto%20personalizado%20para%20una%20Landing%20Page%20🚀"
        target="_blank"
-       style="display:inline-block; margin-top:25px; background:#9b6cff; padding:12px 25px; color:#fff; border-radius:10px; font-weight:bold; text-decoration:none; box-shadow:0 0 15px #9b6cff;">
+       style="display:inline-block; margin-top:20px; background:#9b6cff; padding:10px 25px; color:#fff; border-radius:10px; font-weight:bold; text-decoration:none; box-shadow:0 0 15px #9b6cff;">
        💬 Pedir presupuesto
     </a>
   </section>
@@ -189,7 +205,7 @@
   <!-- CONTACTO -->
   <section id="contacto" class="fade-in">
     <h2>Contacto</h2>
-    <p style="margin-bottom:15px;">Elegí el canal que prefieras y te respondemos enseguida ⚡</p>
+    <p style="margin-bottom:10px;">Elegí el canal que prefieras y te respondemos enseguida ⚡</p>
     <div class="contact-links">
       <a href="https://wa.me/541164499481?text=Hola%20👋,%20vi%20tus%20servicios%20y%20quiero%20una%20Landing%20Page%20🚀" target="_blank">
         <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"> WhatsApp
@@ -203,19 +219,19 @@
     </div>
   </section>
 
-  <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/541164499481?text=Hola%20👋,%20quiero%20una%20Landing%20Page%20para%20mi%20marca%20🚀" class="whatsapp-float" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-  </a>
-
   <!-- FOOTER -->
-  <footer>© 2025 Ciborg347™ — Diseño con actitud. Hecho en Argentina 🇦🇷</footer>
+  <footer style="text-align:center; padding:20px; font-size:0.9em; color:#999;">
+    © 2025 Ciborg347™ — Diseño con actitud. Hecho en Argentina 🇦🇷
+  </footer>
 
   <script>
-    // Menú hamburguesa
-    function toggleMenu(){
-      document.getElementById('nav-links').classList.toggle('show');
-    }
+    // Toggle menú
+    function toggleMenu(){document.getElementById('nav-links').classList.toggle('show');}
+
+    // Cerrar menú al click
+    document.querySelectorAll('#nav-links a').forEach(link=>{
+      link.addEventListener('click',()=>{document.getElementById('nav-links').classList.remove('show');});
+    });
 
     // Fade-in
     const faders=document.querySelectorAll('.fade-in');
