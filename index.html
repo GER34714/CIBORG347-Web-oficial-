@@ -11,13 +11,21 @@
   <meta property="og:image" content="https://iili.io/KHOiff9.md.png">
   <meta property="og:type" content="website">
 
-  <link rel="stylesheet" href="style.css">
-
   <style>
-    body {background:#000; color:#fff; margin:0; font-family:'Arial',sans-serif;}
-    
+    body {
+      background:#000;
+      color:#fff;
+      margin:0;
+      font-family:'Arial',sans-serif;
+      scroll-behavior:smooth;
+    }
+
     /* Logo */
-    .logo img {width:200px; margin:40px auto 10px; display:block;}
+    .logo img {
+      width:200px;
+      margin:40px auto 10px;
+      display:block;
+    }
 
     /* Fade in */
     .fade-in {opacity:0; transform:translateY(30px); transition:all .8s ease;}
@@ -34,7 +42,6 @@
       margin:0 auto;
     }
 
-    /* Ajuste para centrar y mover un poco a la derecha */
     section p, section h1, section h2 {
       margin-left:8%;
       margin-right:8%;
@@ -47,7 +54,7 @@
     }
     .review-card h4 {color:#9b6cff; margin-top:10px; font-weight:600;}
 
-    /* Vistas previas */
+    /* Vista previa */
     .preview-label {
       position:absolute; top:8px; left:8px;
       background:#9b6cff; color:#fff; font-size:12px;
@@ -57,6 +64,7 @@
     .project {position:relative; overflow:hidden; border-radius:10px; cursor:pointer;}
     .project img {width:100%; transition:transform .3s ease;}
     .project:hover img {transform:scale(1.05);}
+    .gallery {display:flex; flex-wrap:wrap; justify-content:center; gap:15px;}
 
     /* Lightbox */
     .lightbox {
@@ -72,7 +80,7 @@
     .nav-btn {position:absolute; top:50%; transform:translateY(-50%); font-size:2em; color:#fff; cursor:pointer; user-select:none;}
     .prev {left:25px;} .next {right:25px;}
 
-    /* Menú hamburguesa */
+    /* Menú */
     nav {background:transparent; padding:10px; position:fixed; width:100%; top:0; z-index:999;}
     .hamburger {display:flex; flex-direction:column; cursor:pointer; width:30px; gap:5px;}
     .hamburger div {height:3px; background:#fff; border-radius:5px;}
@@ -85,6 +93,7 @@
       #nav-links.show {display:flex;}
     }
 
+    /* Footer */
     footer{text-align:center;color:#888;padding:25px 0;font-size:.9em;}
   </style>
 </head>
@@ -124,19 +133,136 @@
     </div>
   </section>
 
-  <!-- RESTO DE TU CONTENIDO IGUAL -->
-  <!-- (desde “Quiénes Somos” hacia abajo sin cambios) -->
+  <!-- QUIÉNES SOMOS -->
+  <section id="quienes" class="fade-in" style="text-align:center;">
+    <h2>¿Quiénes Somos?</h2>
+    <p>
+      Somos <b>Ciborg347™</b> — una fusión entre diseño, estrategia y tecnología.<br>
+      Creamos sitios visualmente impactantes y orientados a resultados reales.<br><br>
+      ⚡ Nuestro objetivo: elevar tu marca digital con una presencia moderna, profesional y con estilo propio.
+    </p>
+  </section>
 
+  <!-- PROYECTOS -->
+  <section id="ejemplos" class="fade-in" style="text-align:center;">
+    <h2>Proyectos Destacados</h2>
+    <p style="color:#aaa; margin-bottom:25px;">Algunos de los diseños que ya están generando impacto 🚀</p>
+
+    <h3>🎰 Casinos / Promocionales</h3>
+    <div class="gallery">
+      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPygQXS.jpg" data-link="https://facucasino.onrender.com/" data-title="Facu Casino™"><a href="https://facucasino.onrender.com/" target="_blank">Facu Casino™</a></div>
+      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyrMj2.jpg" data-link="https://dragon-casino.onrender.com/" data-title="Dragon Casino™"><a href="https://dragon-casino.onrender.com/" target="_blank">Dragon Casino™</a></div>
+      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyDVHP.jpg" data-link="https://dinasty-bet.onrender.com/" data-title="Dynasty Bet™"><a href="https://dinasty-bet.onrender.com/" target="_blank">Dynasty Bet™</a></div>
+    </div>
+
+    <h3>💈 Barberías</h3>
+    <div class="gallery">
+      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyvEcx.jpg" data-link="https://barberia-elbebu.onrender.com/" data-title="Barber 99"><a href="https://barberia-elbebu.onrender.com/" target="_blank">Barber 99</a></div>
+      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyUCn1.jpg" data-link="https://barber-shop-rodri.onrender.com/" data-title="Barber Shop Rodri"><a href="https://barber-shop-rodri.onrender.com/" target="_blank">Barber Shop Rodri</a></div>
+    </div>
+
+    <h3>💅 Estética & Uñas</h3>
+    <div class="gallery">
+      <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyCnHu.jpg" data-link="https://adda-nails.onrender.com/" data-title="Adda Nails"><a href="https://adda-nails.onrender.com/" target="_blank">Adda Nails</a></div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox">
+    <span class="nav-btn prev" onclick="changeSlide(-1)">❮</span>
+    <div class="lightbox-content" style="text-align:center;">
+      <img id="lightbox-img" src="">
+      <div class="caption" id="lightbox-title"></div>
+      <a id="lightbox-link" class="view-btn" href="#" target="_blank">Ver landing completa</a>
+    </div>
+    <span class="nav-btn next" onclick="changeSlide(1)">❯</span>
+  </div>
+
+  <!-- OPINIONES -->
+  <section id="resenas" class="fade-in" style="text-align:center; background:#0a0a0a; padding:60px 20px;">
+    <h2 style="color:#9b6cff; text-shadow:0 0 10px #9b6cff;">Opiniones Reales 💬</h2>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; margin-top:40px;">
+      <div class="review-card">“Mi landing de barbería quedó tremenda. Los clientes llegan por el link directo, todo claro y rápido.”<h4>Rodri — Barber Shop Rodri 💈</h4></div>
+      <div class="review-card">“Excelente atención, cumplieron con los tiempos y el diseño quedó moderno. Muy buena experiencia.”<h4>Adda — Adda Nails 💅</h4></div>
+      <div class="review-card">“Ciborg me ayudó a profesionalizar la imagen de mi radio. El diseño transmite justo lo que quería 🎧.”<h4>Carlos — Radio Imagen™</h4></div>
+    </div>
+  </section>
+
+  <!-- PRESUPUESTO -->
+  <section id="valores" class="fade-in" style="text-align:center;">
+    <h2>Presupuesto Personalizado</h2>
+    <p>
+      💼 En <b>Ciborg347™</b> cada cliente es único, y su proyecto también.<br>
+      No usamos plantillas vacías ni precios estándar: <b>creamos tu web a medida</b>, pensada según tu negocio, tu estilo y tu público.<br><br>
+      🚀 Vos contanos qué querés lograr, nosotros te enviamos una propuesta profesional, clara y sin vueltas.<br><br>
+      💬 <b>Pedí tu presupuesto personalizado</b> y descubrí lo que una web bien hecha puede hacer por tu marca.<br><br>
+      ⚡ <b>Ciborg347™</b> — donde el diseño y la estrategia se combinan para generar resultados reales.
+    </p>
+    <a href="https://wa.me/541164499481?text=Hola%20👋,%20quiero%20pedir%20mi%20presupuesto%20personalizado%20para%20una%20Landing%20Page%20🚀"
+       target="_blank"
+       style="display:inline-block; margin-top:25px; background:#9b6cff; padding:12px 25px; color:#fff; border-radius:10px; font-weight:bold; text-decoration:none; box-shadow:0 0 15px #9b6cff;">
+       💬 Pedir presupuesto
+    </a>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="fade-in" style="text-align:center;">
+    <h2>Contacto</h2>
+    <p style="margin-bottom:15px;">Elegí el canal que prefieras y te respondemos enseguida ⚡</p>
+    <div class="contact-links">
+      <a href="https://wa.me/541164499481?text=Hola%20👋,%20vi%20tus%20servicios%20y%20quiero%20una%20Landing%20Page%20🚀" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"> WhatsApp
+      </a>
+      <a href="mailto:ciborg347@gmail.com?subject=Landing%20Page%20Personalizada&body=Hola%20👋,%20me%20gustaría%20una%20Landing%20Page%20para%20mi%20negocio%20🚀">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email"> Email
+      </a>
+      <a href="https://instagram.com/ciborg347" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"> Instagram
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>© 2025 Ciborg347™ — Diseño con actitud. Hecho en Argentina 🇦🇷</footer>
 
   <script>
+    // Toggle menú
     function toggleMenu(){document.getElementById('nav-links').classList.toggle('show');}
 
+    // Fade in
     const faders=document.querySelectorAll('.fade-in');
     const observer=new IntersectionObserver(entries=>{
       entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
     },{threshold:0.2});
     faders.forEach(el=>observer.observe(el));
+
+    // Lightbox
+    const projects=document.querySelectorAll('.project img');
+    const lightbox=document.getElementById('lightbox');
+    const lightImg=document.getElementById('lightbox-img');
+    const lightTitle=document.getElementById('lightbox-title');
+    const lightLink=document.getElementById('lightbox-link');
+    let currentIndex=0;
+    projects.forEach((img,i)=>{
+      img.addEventListener('click',()=>{
+        currentIndex=i;
+        showLightbox();
+      });
+    });
+    function showLightbox(){
+      const img=projects[currentIndex];
+      lightImg.src=img.src;
+      lightTitle.innerText=img.dataset.title;
+      lightLink.href=img.dataset.link;
+      lightbox.style.display='flex';
+    }
+    function changeSlide(dir){
+      currentIndex=(currentIndex+dir+projects.length)%projects.length;
+      showLightbox();
+    }
+    lightbox.addEventListener('click',e=>{
+      if(e.target===lightbox) lightbox.style.display='none';
+    });
   </script>
 </body>
 </html>
