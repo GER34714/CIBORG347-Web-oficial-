@@ -96,47 +96,29 @@ nav ul li a:hover { color: #00f7ff; }
   100% { filter: drop-shadow(0 0 10px #39ff14); }
 }
 
-/* SECCIONES */
+/* SECCION */
 section { padding: 80px 20px; max-width: 1100px; margin: auto; }
-
-/* TABS */
-.tabs {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 25px;
-  flex-wrap: wrap;
-}
-.tab-btn {
-  background: rgba(57,255,20,0.1);
-  border: 2px solid #39ff14;
-  padding: 10px 18px;
-  border-radius: 20px;
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
   color: #39ff14;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
-.tab-btn:hover,
-.tab-btn.active {
-  background: #39ff14;
-  color: #000;
-}
+h3 { color: #00f7ff; margin-bottom: 15px; }
 
-/* GALERÍA */
 .examples {
-  display: none;
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 18px;
   margin-top: 20px;
 }
-.examples.active { display: grid; }
 
 .project {
   background: rgba(255,255,255,0.05);
   border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,255,128,0.3);
   padding: 10px;
-  border: 1px solid #39ff14;
   transition: 0.3s;
 }
 .project:hover { transform: scale(1.05); }
@@ -146,8 +128,9 @@ section { padding: 80px 20px; max-width: 1100px; margin: auto; }
   object-fit: contain;
   background: rgba(0,0,0,0.6);
   border-radius: 8px;
-  cursor: pointer;
   border: 2px solid #39ff14;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 /* LIGHTBOX */
@@ -162,27 +145,29 @@ section { padding: 80px 20px; max-width: 1100px; margin: auto; }
   justify-content: center;
 }
 .lightbox-content {
-  background: rgba(20,20,20,0.9);
-  padding: 25px;
-  border-radius: 14px;
+  background: rgba(15,15,15,0.9);
+  padding: 20px 30px;
+  border-radius: 16px;
+  box-shadow: 0 0 25px #39ff14;
   max-width: 420px;
   text-align: center;
-  box-shadow: 0 0 20px #39ff14;
 }
 .lightbox-content img {
   width: 100%;
-  border-radius: 10px;
+  max-height: 300px;
+  object-fit: contain;
   border: 2px solid #39ff14;
+  border-radius: 10px;
 }
-.view-btn {
-  margin-top: 12px;
+.lightbox .view-btn {
+  margin-top: 10px;
+  display: inline-block;
   background: #39ff14;
   color: #000;
-  padding: 10px 20px;
-  border-radius: 20px;
+  padding: 8px 20px;
+  border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
-  display: inline-block;
 }
 
 /* WHATSAPP */
@@ -197,6 +182,8 @@ section { padding: 80px 20px; max-width: 1100px; margin: auto; }
   height: 64px;
   border-radius: 50%;
 }
+
+/* FOOTER */
 footer {
   background: rgba(255,255,255,0.05);
   padding: 20px;
@@ -218,7 +205,7 @@ footer {
 </nav>
 
 <div class="logo">
-  <img src="https://iili.io/KHOiff9.md.png">
+  <img src="https://iili.io/KHOiff9.md.png" alt="Ciborg347™">
 </div>
 
 <section id="quienes">
@@ -229,17 +216,10 @@ footer {
 <section id="ejemplos">
   <h2>Ejemplos de Landings</h2>
 
-  <!-- TABS -->
-  <div class="tabs">
-    <div class="tab-btn active" data-tab="casinos">🎰 Casinos</div>
-    <div class="tab-btn" data-tab="barber">💈 Barberías</div>
-    <div class="tab-btn" data-tab="nails">💅 Uñas</div>
-    <div class="tab-btn" data-tab="restobar">🍻 Bailables</div>
-    <div class="tab-btn" data-tab="radio">📻 Radios Online</div>
-  </div>
+  <!-- 🎰 CASINOS -->
+  <h3>🎰 Casinos</h3>
+  <div class="examples gallery">
 
-  <!-- CASINOS -->
-  <div class="examples active gallery" id="casinos">
     <div class="project"><img src="https://iili.io/KPygQXS.jpg" data-title="Facu Casino" data-link="https://facucasino.onrender.com/"></div>
     <div class="project"><img src="https://iili.io/KPyrMj2.jpg" data-title="Dragon Casino" data-link="https://dragon-casino.onrender.com/"></div>
     <div class="project"><img src="https://iili.io/KPyDVHP.jpg" data-title="Dynasty Bet" data-link="https://dinasty-bet.onrender.com/"></div>
@@ -251,28 +231,33 @@ footer {
     <div class="project">
       <img src="https://iili.io/f9a9Fdx.jpg" data-title="Rueda de Premios" data-link="https://giraygana-ijae.onrender.com">
     </div>
+
   </div>
 
-  <!-- BARBERÍAS -->
-  <div class="examples gallery" id="barber">
+  <!-- 💈 BARBERÍAS -->
+  <h3>💈 Barberías</h3>
+  <div class="examples gallery">
     <div class="project"><img src="https://iili.io/KPyvEcx.jpg" data-title="Barber 99" data-link="https://barberia-elbebu.onrender.com/"></div>
     <div class="project"><img src="https://iili.io/KPyUCn1.jpg" data-title="Rodri Barber" data-link="https://barber-shop-rodri.onrender.com/"></div>
   </div>
 
-  <!-- NAILS -->
-  <div class="examples gallery" id="nails">
+  <!-- 💅 ESTÉTICA -->
+  <h3>💅 Estética & Uñas</h3>
+  <div class="examples gallery">
     <div class="project"><img src="https://iili.io/KPyCnHu.jpg" data-title="Adda Nails" data-link="https://adda-nails.onrender.com/"></div>
   </div>
 
-  <!-- BAILABLES -->
-  <div class="examples gallery" id="restobar">
+  <!-- 🍻 BAILABLES -->
+  <h3>🍻 Restobar / Bailables</h3>
+  <div class="examples gallery">
     <div class="project">
       <img src="https://iili.io/f9a9K5Q.jpg" data-title="Tío Sergio" data-link="https://tio-sergio.onrender.com">
     </div>
   </div>
 
-  <!-- RADIOS -->
-  <div class="examples gallery" id="radio">
+  <!-- 📻 RADIOS ONLINE -->
+  <h3>📻 Radios Online</h3>
+  <div class="examples gallery">
     <div class="project">
       <img src="https://iili.io/f9an4yX.jpg" data-title="Radio Imagen" data-link="https://radioimagen.onrender.com">
     </div>
@@ -282,12 +267,14 @@ footer {
 
 <section id="valores">
   <h2>Presupuesto Personalizado</h2>
-  <p>Tu landing hecha a medida, rápido y profesional.</p>
+  <p>Te armamos una landing profesional, rápida y hecha a medida.</p>
 </section>
 
 <section id="contacto">
   <h2>Contacto</h2>
-  <a href="https://wa.me/541164499481" target="_blank">WhatsApp</a>
+  <div class="contact-links">
+    <a href="https://wa.me/541164499481" target="_blank">WhatsApp</a>
+  </div>
 </section>
 
 <a href="https://wa.me/541164499481?text=Hola%20Ciborg347!" class="whatsapp-float" target="_blank">
@@ -299,48 +286,34 @@ footer {
 <!-- LIGHTBOX -->
 <div id="lightbox" class="lightbox">
   <div class="lightbox-content">
-    <img id="lightbox-img">
-    <div id="lightbox-title"></div>
-    <a id="lightbox-link" class="view-btn" target="_blank">Ver landing completa</a>
+    <img id="lightbox-img" src="">
+    <div class="caption" id="lightbox-title"></div>
+    <a id="lightbox-link" class="view-btn" href="#" target="_blank">Ver landing completa</a>
   </div>
 </div>
 
 <script>
-function toggleMenu(){
-  document.getElementById("nav-links").classList.toggle("active");
-}
-
-/* TABS */
-const tabs = document.querySelectorAll(".tab-btn");
-const sections = document.querySelectorAll(".examples");
-
-tabs.forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    tabs.forEach(b=>b.classList.remove("active"));
-    btn.classList.add("active");
-    sections.forEach(s=>s.classList.remove("active"));
-    document.getElementById(btn.dataset.tab).classList.add("active");
-  });
-});
+const navMenu = document.getElementById("nav-links");
+function toggleMenu() { navMenu.classList.toggle("active"); }
 
 /* LIGHTBOX */
-const images = document.querySelectorAll(".gallery img");
-const box = document.getElementById("lightbox");
-const boxImg = document.getElementById("lightbox-img");
-const boxTitle = document.getElementById("lightbox-title");
-const boxLink = document.getElementById("lightbox-link");
+const galleryItems = document.querySelectorAll(".gallery img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const lightboxTitle = document.getElementById("lightbox-title");
+const lightboxLink = document.getElementById("lightbox-link");
 
-images.forEach(img=>{
+galleryItems.forEach((img)=>{
   img.addEventListener("click",()=>{
-    box.style.display = "flex";
-    boxImg.src = img.src;
-    boxTitle.innerText = img.dataset.title;
-    boxLink.href = img.dataset.link;
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+    lightboxTitle.textContent = img.dataset.title;
+    lightboxLink.href = img.dataset.link;
   });
 });
 
-box.addEventListener("click", e=>{
-  if(e.target === box) box.style.display = "none";
+lightbox.addEventListener("click",(e)=>{
+  if(e.target === lightbox) lightbox.style.display = "none";
 });
 </script>
 
