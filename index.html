@@ -96,7 +96,7 @@ nav ul li a:hover { color: #00f7ff; }
   100% { filter: drop-shadow(0 0 10px #39ff14); }
 }
 
-/* SECCION */
+/* SECCIONES */
 section { padding: 80px 20px; max-width: 1100px; margin: auto; }
 h2 {
   font-size: 2rem;
@@ -106,14 +106,15 @@ h2 {
   letter-spacing: 2px;
 }
 h3 { color: #00f7ff; margin-bottom: 15px; }
+p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
 
+/* GALERÍA */
 .examples {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 18px;
   margin-top: 20px;
 }
-
 .project {
   background: rgba(255,255,255,0.05);
   border-radius: 10px;
@@ -137,12 +138,13 @@ h3 { color: #00f7ff; margin-bottom: 15px; }
 .lightbox {
   display: none;
   position: fixed;
+  z-index: 2000;
   top: 0; left: 0;
   width: 100%; height: 100%;
   background: rgba(0,0,0,0.9);
-  z-index: 2000;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 .lightbox-content {
   background: rgba(15,15,15,0.9);
@@ -151,6 +153,7 @@ h3 { color: #00f7ff; margin-bottom: 15px; }
   box-shadow: 0 0 25px #39ff14;
   max-width: 420px;
   text-align: center;
+  animation: fadeIn .4s ease;
 }
 .lightbox-content img {
   width: 100%;
@@ -158,7 +161,9 @@ h3 { color: #00f7ff; margin-bottom: 15px; }
   object-fit: contain;
   border: 2px solid #39ff14;
   border-radius: 10px;
+  box-shadow: 0 0 15px #39ff14;
 }
+.lightbox .caption { margin-top: 10px; color: #39ff14; font-weight: bold; }
 .lightbox .view-btn {
   margin-top: 10px;
   display: inline-block;
@@ -169,6 +174,7 @@ h3 { color: #00f7ff; margin-bottom: 15px; }
   text-decoration: none;
   font-weight: bold;
 }
+@keyframes fadeIn { from { opacity: 0; transform: scale(.8); } to { opacity: 1; transform: scale(1); } }
 
 /* WHATSAPP */
 .whatsapp-float {
@@ -227,7 +233,7 @@ footer {
     <div class="project"><img src="https://iili.io/Kigv3Ij.jpg" data-title="Fortuna Play" data-link="https://ganamostodosjuntos.onrender.com/"></div>
     <div class="project"><img src="https://iili.io/KiggTcN.jpg" data-title="Lions Casino" data-link="https://lions-casino.onrender.com/"></div>
 
-    <!-- NUEVA RUEDA DE PREMIOS -->
+    <!-- ⭐ NUEVA RUEDA DE PREMIOS AÑADIDA -->
     <div class="project">
       <img src="https://iili.io/f9a9Fdx.jpg" data-title="Rueda de Premios" data-link="https://giraygana-ijae.onrender.com">
     </div>
@@ -238,7 +244,7 @@ footer {
   <h3>💈 Barberías</h3>
   <div class="examples gallery">
     <div class="project"><img src="https://iili.io/KPyvEcx.jpg" data-title="Barber 99" data-link="https://barberia-elbebu.onrender.com/"></div>
-    <div class="project"><img src="https://iili.io/KPyUCn1.jpg" data-title="Rodri Barber" data-link="https://barber-shop-rodri.onrender.com/"></div>
+    <div class="project"><img src="https://iili.io/KPyUCn1.jpg" data-title="Barber Shop Rodri" data-link="https://barber-shop-rodri.onrender.com/"></div>
   </div>
 
   <!-- 💅 ESTÉTICA -->
@@ -267,7 +273,7 @@ footer {
 
 <section id="valores">
   <h2>Presupuesto Personalizado</h2>
-  <p>Te armamos una landing profesional, rápida y hecha a medida.</p>
+  <p>💼 Te armamos una landing profesional, rápida y hecha a medida.</p>
 </section>
 
 <section id="contacto">
@@ -285,35 +291,48 @@ footer {
 
 <!-- LIGHTBOX -->
 <div id="lightbox" class="lightbox">
+  <span class="nav-btn prev" onclick="changeSlide(-1)">❮</span>
   <div class="lightbox-content">
     <img id="lightbox-img" src="">
     <div class="caption" id="lightbox-title"></div>
     <a id="lightbox-link" class="view-btn" href="#" target="_blank">Ver landing completa</a>
   </div>
+  <span class="nav-btn next" onclick="changeSlide(1)">❯</span>
 </div>
 
 <script>
+/* MENU */
 const navMenu = document.getElementById("nav-links");
+const navLinks = navMenu.querySelectorAll("a");
 function toggleMenu() { navMenu.classList.toggle("active"); }
+navLinks.forEach(link => link.addEventListener("click", () => navMenu.classList.remove("active")));
 
 /* LIGHTBOX */
 const galleryItems = document.querySelectorAll(".gallery img");
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
-const lightboxTitle = document.getElementById("lightbox-title");
-const lightboxLink = document.getElementById("lightbox-link");
+let currentIndex = 0;
 
-galleryItems.forEach((img)=>{
-  img.addEventListener("click",()=>{
-    lightbox.style.display = "flex";
-    lightboxImg.src = img.src;
-    lightboxTitle.textContent = img.dataset.title;
-    lightboxLink.href = img.dataset.link;
-  });
+galleryItems.forEach((img, i) => {
+  img.addEventListener("click", () => openGallery(i));
 });
 
-lightbox.addEventListener("click",(e)=>{
-  if(e.target === lightbox) lightbox.style.display = "none";
+function openGallery(i) {
+  currentIndex = i;
+  const img = galleryItems[i];
+  document.getElementById("lightbox-img").src = img.src;
+  document.getElementById("lightbox-title").textContent = img.dataset.title;
+  const link = document.getElementById("lightbox-link");
+  link.href = img.dataset.link;
+  link.textContent = "Ver landing completa (" + img.dataset.title + ")";
+  document.getElementById("lightbox").style.display = "flex";
+}
+
+function changeSlide(step) {
+  currentIndex = (currentIndex + step + galleryItems.length) % galleryItems.length;
+  openGallery(currentIndex);
+}
+
+document.getElementById("lightbox").addEventListener("click", (e) => {
+  if (e.target.id === "lightbox") document.getElementById("lightbox").style.display = "none";
 });
 </script>
 
