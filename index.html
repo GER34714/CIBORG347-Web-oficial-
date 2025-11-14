@@ -22,42 +22,28 @@ body {
   overflow-x: hidden;
 }
 
-/* 🔥 FONDO: CIRCUITOS + PULSOS NEÓN */
-#circuitos {
+/* 🔵 FONDO ANIMADO DE CIRCUITOS */
+.circuit-bg {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: #000;
+  background: radial-gradient(#0f0f0f, #000);
   overflow: hidden;
 }
 
-.linea {
+.circuit-line {
   position: absolute;
-  background: linear-gradient(90deg, transparent, #39ff14, transparent);
-  height: 2px;
-  width: 120px;
-  animation: mover 4s linear infinite;
-  opacity: 0.7;
+  width: 2px;
+  height: 80px;
+  background: #39ff1444;
+  animation: circuitMove 5s infinite linear;
+  filter: drop-shadow(0 0 6px #39ff14);
 }
 
-@keyframes mover {
-  0% { transform: translateX(-20vw); }
-  100% { transform: translateX(120vw); }
-}
-
-.pulso {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: #00f7ff;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #00f7ff;
-  animation: pulso 2s infinite ease-in-out;
-}
-
-@keyframes pulso {
-  0%, 100% { transform: scale(1); opacity: 0.4; }
-  50% { transform: scale(1.8); opacity: 1; }
+@keyframes circuitMove {
+  0% { transform: translateY(0); opacity: 0.1; }
+  40% { opacity: 1; }
+  100% { transform: translateY(140vh); opacity: 0; }
 }
 
 /* NAVBAR */
@@ -147,17 +133,13 @@ h2 {
 h3 { color: #00f7ff; margin-bottom: 15px; }
 p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
 
-/* GALERÍA + SWIPE + DRAG */
+/* GALERÍA */
 .examples {
   display: flex;
   overflow-x: auto;
+  scroll-snap-type: x mandatory;
   gap: 18px;
   padding-bottom: 10px;
-  scroll-snap-type: x mandatory;
-  cursor: grab;
-}
-.examples:active {
-  cursor: grabbing;
 }
 
 .examples::-webkit-scrollbar { height: 6px; }
@@ -208,17 +190,13 @@ p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
 }
 .project a:hover { color: #00f7ff; }
 
-/* FLECHAS INVISIBLES EN PC */
-.flecha-inv {
-  position: absolute;
-  top: 0;
-  width: 80px;
-  height: 100%;
-  cursor: pointer;
-  z-index: 500;
+/* FOOTER */
+footer {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #777;
 }
-.flecha-left { left: 0; }
-.flecha-right { right: 0; }
 
 /* WHATSAPP */
 .whatsapp-float {
@@ -233,20 +211,12 @@ p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(0,255,0,0.5);
 }
-
-/* FOOTER */
-footer {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  font-size: 0.9rem;
-  color: #777;
-}
 </style>
 </head>
 <body>
 
-<!-- 🔥 FONDO DE CIRCUITOS -->
-<div id="circuitos"></div>
+<!-- Fondo animado -->
+<div class="circuit-bg" id="circuit-bg"></div>
 
 <nav>
   <div class="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
@@ -273,9 +243,6 @@ footer {
   <!-- 🎰 CASINOS -->
   <h3>🎰 Casinos</h3>
   <div class="examples gallery">
-    
-    <div class="flecha-inv flecha-left"></div>
-    <div class="flecha-inv flecha-right"></div>
 
     <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPygQXS.jpg" data-link="https://facucasino.onrender.com/" data-title="Facu Casino™"><a href="https://facucasino.onrender.com/" target="_blank">Facu Casino™</a></div>
 
@@ -359,59 +326,28 @@ footer {
 <footer>© 2025 Ciborg347™ - Landing Pages & Web Designs</footer>
 
 <script>
-/* 🔥 CIRCUITOS ANIMADOS */
-const circuitos = document.getElementById("circuitos");
-
-for (let i = 0; i < 25; i++) {
-  let l = document.createElement("div");
-  l.className = "linea";
-  l.style.top = Math.random() * 100 + "vh";
-  l.style.animationDelay = Math.random() * 4 + "s";
-  circuitos.appendChild(l);
+/* Fondo animado — genera líneas tipo circuitos */
+const circuit = document.getElementById("circuit-bg");
+for (let i = 0; i < 30; i++) {
+  let line = document.createElement("div");
+  line.className = "circuit-line";
+  line.style.left = Math.random() * 100 + "vw";
+  line.style.animationDelay = (Math.random() * 5) + "s";
+  circuit.appendChild(line);
 }
 
-for (let i = 0; i < 20; i++) {
-  let p = document.createElement("div");
-  p.className = "pulso";
-  p.style.top = Math.random() * 100 + "vh";
-  p.style.left = Math.random() * 100 + "vw";
-  p.style.animationDelay = Math.random() * 3 + "s";
-  circuitos.appendChild(p);
+/* Mobile swipe already works thanks to overflow-x */
+/* Solo PC usa flechas con teclado */
+if (window.innerWidth > 768) {
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") window.scrollBy({ left: 200, behavior: "smooth" });
+    if (e.key === "ArrowLeft") window.scrollBy({ left: -200, behavior: "smooth" });
+  });
 }
 
-/* 🔥 DRAG CON EL MOUSE (PC) */
-document.querySelectorAll('.examples').forEach(container => {
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-
-  container.addEventListener('mousedown', e => {
-    isDown = true;
-    startX = e.pageX - container.offsetLeft;
-    scrollLeft = container.scrollLeft;
-  });
-
-  container.addEventListener('mouseleave', () => isDown = false);
-  container.addEventListener('mouseup', () => isDown = false);
-
-  container.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - container.offsetLeft;
-    container.scrollLeft = scrollLeft - (x - startX) * 1.2;
-  });
-});
-
-/* 🔥 FLECHAS INVISIBLES */
-document.querySelectorAll('.gallery').forEach(gallery => {
-  const left = gallery.querySelector('.flecha-left');
-  const right = gallery.querySelector('.flecha-right');
-
-  if (left && right) {
-    left.onclick = () => gallery.scrollBy({ left: -200, behavior: 'smooth' });
-    right.onclick = () => gallery.scrollBy({ left: 200, behavior: 'smooth' });
-  }
-});
+/* Menú móvil */
+const navMenu = document.getElementById("nav-links");
+function toggleMenu() { navMenu.classList.toggle("active"); }
 </script>
 
 </body>
