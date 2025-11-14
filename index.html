@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +10,34 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <style>
+/* VIDEO DE FONDO */
+#video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -3;
+  filter: blur(10px) brightness(0.7);
+}
+
+/* OVERLAY SUAVE */
+#overlay-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.30);
+  z-index: -2;
+}
+
+/* ESTILOS ORIGINALES */
 body {
   margin: 0;
   font-family: 'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif;
-  background: #0a0a0a;
+  background: transparent !important;
   color: #fff;
   text-align: center;
   scroll-behavior: smooth;
@@ -109,7 +131,7 @@ h2 {
 h3 { color: #00f7ff; margin-bottom: 15px; }
 p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
 
-/* GALERÍA ➜ convertida en carrusel con SWIPE + DRAG */
+/* GALERÍA con SWIPE + DRAG */
 .examples {
   display: flex !important;
   overflow-x: auto;
@@ -118,10 +140,7 @@ p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
   padding-bottom: 10px;
   cursor: grab;
 }
-.examples:active {
-  cursor: grabbing;
-}
-
+.examples:active { cursor: grabbing; }
 .examples::-webkit-scrollbar { height: 6px; }
 .examples::-webkit-scrollbar-thumb { background: #39ff14; border-radius: 6px; }
 
@@ -168,18 +187,6 @@ p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
   font-weight: bold;
 }
 .project a:hover { color: #00f7ff; }
-
-/* FLECHAS INVISIBLES */
-.flecha-left, .flecha-right {
-  position: absolute;
-  top: 0;
-  width: 60px;
-  height: 100%;
-  z-index: 10;
-  cursor: pointer;
-}
-.flecha-left { left: 0; }
-.flecha-right { right: 0; }
 
 /* LIGHTBOX */
 .lightbox {
@@ -265,8 +272,13 @@ footer {
   color: #777;
 }
 </style>
-</head>
-<body>
+</head><body>
+
+<!-- VIDEO DE FONDO -->
+<video id="video-bg" autoplay muted loop playsinline>
+  <source src="https://files.catbox.moe/j5sixk.webm" type="video/webm">
+</video>
+<div id="overlay-bg"></div>
 
 <nav>
   <div class="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
@@ -293,50 +305,80 @@ footer {
   <!-- 🎰 CASINOS -->
   <h3>🎰 Casinos</h3>
   <div class="examples gallery">
-    <div class="flecha-left"></div>
-    <div class="flecha-right"></div>
 
-    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPygQXS.jpg" data-link="https://facucasino.onrender.com/" data-title="Facu Casino™"><a href="https://facucasino.onrender.com/" target="_blank">Facu Casino™</a></div>
+    <div class="project">
+      <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KPygQXS.jpg" data-link="https://facucasino.onrender.com/" data-title="Facu Casino™">
+      <a href="https://facucasino.onrender.com/" target="_blank">Facu Casino™</a>
+    </div>
 
-    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyrMj2.jpg" data-link="https://dragon-casino.onrender.com/" data-title="Dragon Casino™"><a href="https://dragon-casino.onrender.com/" target="_blank">Dragon Casino™</a></div>
+    <div class="project">
+      <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KPyrMj2.jpg" data-link="https://dragon-casino.onrender.com/" data-title="Dragon Casino™">
+      <a href="https://dragon-casino.onrender.com/" target="_blank">Dragon Casino™</a>
+    </div>
 
-    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyDVHP.jpg" data-link="https://dinasty-bet.onrender.com/" data-title="Dynasty Bet™"><a href="https://dinasty-bet.onrender.com/" target="_blank">Dynasty Bet™</a></div>
+    <div class="project">
+      <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KPyDVHP.jpg" data-link="https://dinasty-bet.onrender.com/" data-title="Dynasty Bet™">
+      <a href="https://dinasty-bet.onrender.com/" target="_blank">Dynasty Bet™</a>
+    </div>
 
-    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KigNdVS.jpg" data-link="https://giraygana-fortunaplay.onrender.com/" data-title="Gira y Gana™"><a href="https://giraygana-fortunaplay.onrender.com/" target="_blank">Gira y Gana™</a></div>
+    <div class="project">
+      <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KigNdVS.jpg" data-link="https://giraygana-fortunaplay.onrender.com/" data-title="Gira y Gana™">
+      <a href="https://giraygana-fortunaplay.onrender.com/" target="_blank">Gira y Gana™</a>
+    </div>
 
-    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/Kigv3Ij.jpg" data-link="https://ganamostodosjuntos.onrender.com/" data-title="Fortuna Play™"><a href="https://ganamostodosjuntos.onrender.com/" target="_blank">Fortuna Play™</a></div>
+    <div class="project">
+      <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/Kigv3Ij.jpg" data-link="https://ganamostodosjuntos.onrender.com/" data-title="Fortuna Play™">
+      <a href="https://ganamostodosjuntos.onrender.com/" target="_blank">Fortuna Play™</a>
+    </div>
 
-    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KiggTcN.jpg" data-link="https://lions-casino.onrender.com/" data-title="Lions Casino™"><a href="https://lions-casino.onrender.com/" target="_blank">Lions Casino™</a></div>
+    <div class="project">
+      <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KiggTcN.jpg" data-link="https://lions-casino.onrender.com/" data-title="Lions Casino™">
+      <a href="https://lions-casino.onrender.com/" target="_blank">Lions Casino™</a>
+    </div>
 
-    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/f9a9Fdx.jpg" data-link="https://giraygana-ijae.onrender.com" data-title="Rueda de Premios™"><a href="https://giraygana-ijae.onrender.com" target="_blank">Rueda de Premios™</a></div>
+    <div class="project">
+      <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/f9a9Fdx.jpg" data-link="https://giraygana-ijae.onrender.com" data-title="Rueda de Premios™">
+      <a href="https://giraygana-ijae.onrender.com" target="_blank">Rueda de Premios™</a>
+    </div>
+
   </div>
 
   <!-- 💈 BARBERÍAS -->
   <h3>💈 Barberías</h3>
   <div class="examples gallery">
-    <div class="flecha-left"></div>
-    <div class="flecha-right"></div>
+    <div class="project">
+      <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KPyvEcx.jpg" data-link="https://barberia-elbebu.onrender.com/" data-title="Barber 99">
+      <a href="https://barberia-elbebu.onrender.com/" target="_blank">Barber 99</a>
+    </div>
 
-    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyvEcx.jpg" data-link="https://barberia-elbebu.onrender.com/" data-title="Barber 99"><a href="https://barberia-elbebu.onrender.com/" target="_blank">Barber 99</a></div>
-
-    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyUCn1.jpg" data-link="https://barber-shop-rodri.onrender.com/" data-title="Barber Shop Rodri"><a href="https://barber-shop-rodri.onrender.com/" target="_blank">Barber Shop Rodri</a></div>
+    <div class="project">
+      <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KPyUCn1.jpg" data-link="https://barber-shop-rodri.onrender.com/" data-title="Barber Shop Rodri">
+      <a href="https://barber-shop-rodri.onrender.com/" target="_blank">Barber Shop Rodri</a>
+    </div>
   </div>
 
   <!-- 💅 UÑAS -->
   <h3>💅 Estética & Uñas</h3>
   <div class="examples gallery">
-    <div class="flecha-left"></div>
-    <div class="flecha-right"></div>
-
-    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyCnHu.jpg" data-link="https://adda-nails.onrender.com/" data-title="Adda Nails"><a href="https://adda-nails.onrender.com/" target="_blank">Adda Nails</a></div>
+    <div class="project">
+      <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KPyCnHu.jpg" data-link="https://adda-nails.onrender.com/" data-title="Adda Nails">
+      <a href="https://adda-nails.onrender.com/" target="_blank">Adda Nails</a>
+    </div>
   </div>
 
   <!-- 🎤 MMG NUEVO -->
   <h3>🎤 Artistas / Booking</h3>
   <div class="examples gallery">
-    <div class="flecha-left"></div>
-    <div class="flecha-right"></div>
-
     <div class="project">
       <div class="preview-label">Vista previa</div>
       <img src="https://iili.io/KtXqRHQ.md.jpg" data-link="https://mmg-manager.onrender.com" data-title="MMG – Manager Music Group™">
@@ -347,9 +389,6 @@ footer {
   <!-- 🍻 RESTOBAR -->
   <h3>🍻 Restobar / Bailables</h3>
   <div class="examples gallery">
-    <div class="flecha-left"></div>
-    <div class="flecha-right"></div>
-
     <div class="project">
       <div class="preview-label">Vista previa</div>
       <img src="https://iili.io/f9a9K5Q.jpg" data-link="https://tio-sergio.onrender.com" data-title="Tío Sergio™">
@@ -360,9 +399,6 @@ footer {
   <!-- 📻 RADIOS -->
   <h3>📻 Radios Online</h3>
   <div class="examples gallery">
-    <div class="flecha-left"></div>
-    <div class="flecha-right"></div>
-
     <div class="project">
       <div class="preview-label">Vista previa</div>
       <img src="https://iili.io/f9an4yX.jpg" data-link="https://radioimagen.onrender.com" data-title="Radio Imagen™">
@@ -413,8 +449,11 @@ navLinks.forEach(link => link.addEventListener("click", () => navMenu.classList.
 /* LIGHTBOX */
 const galleryItems = document.querySelectorAll(".gallery img");
 let currentIndex = 0;
-galleryItems.forEach((img, i) => { img.addEventListener("click", () => openGallery(i)); });
+galleryItems.forEach((img, i) => {
+  img.addEventListener("click", () => openGallery(i));
+});
 
+/* Abrir lightbox */
 function openGallery(i) {
   currentIndex = i;
   const img = galleryItems[i];
@@ -426,16 +465,18 @@ function openGallery(i) {
   document.getElementById("lightbox").style.display = "flex";
 }
 
+/* Cambiar slide */
 function changeSlide(step) {
   currentIndex = (currentIndex + step + galleryItems.length) % galleryItems.length;
   openGallery(currentIndex);
 }
 
+/* Cerrar lightbox */
 document.getElementById("lightbox").addEventListener("click", (e) => {
   if (e.target.id === "lightbox") document.getElementById("lightbox").style.display = "none";
 });
 
-/* SWIPE + DRAG */
+/* SWIPE + DRAG EN GALERÍAS */
 document.querySelectorAll('.examples').forEach(container => {
   let isDown = false;
   let startX;
@@ -454,17 +495,53 @@ document.querySelectorAll('.examples').forEach(container => {
     if (!isDown) return;
     e.preventDefault();
     const x = e.pageX - container.offsetLeft;
-    container.scrollLeft = scrollLeft - (x - startX) * 1.2;
+    container.scrollLeft = scrollLeft - (x - startX) * 1.3;
   });
 
-  /* Flechas invisibles */
-  const left = container.querySelector('.flecha-left');
-  const right = container.querySelector('.flecha-right');
-  if (left && right) {
-    left.onclick = () => container.scrollBy({ left: -200, behavior: 'smooth' });
-    right.onclick = () => container.scrollBy({ left: 200, behavior: 'smooth' });
-  }
+  /* SWIPE TOUCH */
+  container.addEventListener('touchstart', e => {
+    startX = e.touches[0].pageX;
+    scrollLeft = container.scrollLeft;
+  });
+
+  container.addEventListener('touchmove', e => {
+    const x = e.touches[0].pageX;
+    const walk = (x - startX) * 1.2;
+    container.scrollLeft = scrollLeft - walk;
+  });
 });
+
+/* SWIPE LIGHTBOX */
+let startTouchX = 0;
+document.getElementById("lightbox-img").addEventListener("touchstart", e => {
+  startTouchX = e.touches[0].clientX;
+});
+document.getElementById("lightbox-img").addEventListener("touchend", e => {
+  let endTouchX = e.changedTouches[0].clientX;
+  if (endTouchX < startTouchX - 50) changeSlide(1);
+  if (endTouchX > startTouchX + 50) changeSlide(-1);
+});
+
+/* DRAG CON MOUSE EN LIGHTBOX */
+let isDragging = false;
+let dragStartX = 0;
+
+const lbImg = document.getElementById("lightbox-img");
+
+lbImg.addEventListener("mousedown", e => {
+  isDragging = true;
+  dragStartX = e.clientX;
+});
+
+lbImg.addEventListener("mouseup", e => {
+  if (!isDragging) return;
+  let diff = e.clientX - dragStartX;
+  if (diff < -50) changeSlide(1);
+  if (diff > 50) changeSlide(-1);
+  isDragging = false;
+});
+
+lbImg.addEventListener("mouseleave", () => isDragging = false);
 </script>
 
 </body>
