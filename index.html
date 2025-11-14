@@ -19,6 +19,45 @@ body {
   color: #fff;
   text-align: center;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* 🔥 FONDO: CIRCUITOS + PULSOS NEÓN */
+#circuitos {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: #000;
+  overflow: hidden;
+}
+
+.linea {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, #39ff14, transparent);
+  height: 2px;
+  width: 120px;
+  animation: mover 4s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes mover {
+  0% { transform: translateX(-20vw); }
+  100% { transform: translateX(120vw); }
+}
+
+.pulso {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #00f7ff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00f7ff;
+  animation: pulso 2s infinite ease-in-out;
+}
+
+@keyframes pulso {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.8); opacity: 1; }
 }
 
 /* NAVBAR */
@@ -64,6 +103,7 @@ nav ul li a.active::after {
   width: 100%;
 }
 nav ul li a:hover { color: #00f7ff; }
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -74,7 +114,6 @@ nav ul li a:hover { color: #00f7ff; }
   width: 25px;
   height: 3px;
   background: #39ff14;
-  transition: 0.3s;
 }
 
 /* LOGO */
@@ -108,14 +147,25 @@ h2 {
 h3 { color: #00f7ff; margin-bottom: 15px; }
 p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
 
-/* GALERÍA */
+/* GALERÍA + SWIPE + DRAG */
 .examples {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  display: flex;
+  overflow-x: auto;
   gap: 18px;
-  margin-top: 20px;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+  cursor: grab;
 }
+.examples:active {
+  cursor: grabbing;
+}
+
+.examples::-webkit-scrollbar { height: 6px; }
+.examples::-webkit-scrollbar-thumb { background: #39ff14; border-radius: 6px; }
+
 .project {
+  scroll-snap-align: center;
+  min-width: 150px;
   background: rgba(255,255,255,0.05);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,255,128,0.3);
@@ -124,6 +174,7 @@ p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
   position: relative;
 }
 .project:hover { transform: scale(1.05); }
+
 .preview-label {
   position: absolute;
   top: -12px;
@@ -157,67 +208,17 @@ p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
 }
 .project a:hover { color: #00f7ff; }
 
-/* LIGHTBOX */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.9);
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+/* FLECHAS INVISIBLES EN PC */
+.flecha-inv {
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 100%;
+  cursor: pointer;
+  z-index: 500;
 }
-.lightbox-content {
-  background: rgba(15,15,15,0.9);
-  padding: 20px 30px;
-  border-radius: 16px;
-  max-width: 420px;
-  text-align: center;
-  box-shadow: 0 0 25px #39ff14;
-}
-.lightbox-content img {
-  width: 100%;
-  max-height: 300px;
-  object-fit: contain;
-  border: 2px solid #39ff14;
-  border-radius: 10px;
-}
-.lightbox .view-btn {
-  margin-top: 10px;
-  display: inline-block;
-  background: #39ff14;
-  color: #000;
-  padding: 8px 20px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-/* CONTACTO */
-.contact-links {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  margin-top: 20px;
-}
-.contact-links a {
-  text-decoration: none;
-  color: #39ff14;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: 0.3s;
-}
-.contact-links a:hover { color: #00f7ff; }
-.contact-links img {
-  width: 20px;
-  height: 20px;
-  filter: drop-shadow(0 0 5px #39ff14);
-}
+.flecha-left { left: 0; }
+.flecha-right { right: 0; }
 
 /* WHATSAPP */
 .whatsapp-float {
@@ -243,6 +244,9 @@ footer {
 </style>
 </head>
 <body>
+
+<!-- 🔥 FONDO DE CIRCUITOS -->
+<div id="circuitos"></div>
 
 <nav>
   <div class="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
@@ -270,23 +274,22 @@ footer {
   <h3>🎰 Casinos</h3>
   <div class="examples gallery">
     
+    <div class="flecha-inv flecha-left"></div>
+    <div class="flecha-inv flecha-right"></div>
+
     <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPygQXS.jpg" data-link="https://facucasino.onrender.com/" data-title="Facu Casino™"><a href="https://facucasino.onrender.com/" target="_blank">Facu Casino™</a></div>
+
     <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyrMj2.jpg" data-link="https://dragon-casino.onrender.com/" data-title="Dragon Casino™"><a href="https://dragon-casino.onrender.com/" target="_blank">Dragon Casino™</a></div>
+
     <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyDVHP.jpg" data-link="https://dinasty-bet.onrender.com/" data-title="Dynasty Bet™"><a href="https://dinasty-bet.onrender.com/" target="_blank">Dynasty Bet™</a></div>
 
-    <!-- NUEVAS LANDINGS -->
     <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KigNdVS.jpg" data-link="https://giraygana-fortunaplay.onrender.com/" data-title="Gira y Gana™"><a href="https://giraygana-fortunaplay.onrender.com/" target="_blank">Gira y Gana™</a></div>
 
     <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/Kigv3Ij.jpg" data-link="https://ganamostodosjuntos.onrender.com/" data-title="Fortuna Play™"><a href="https://ganamostodosjuntos.onrender.com/" target="_blank">Fortuna Play™</a></div>
 
     <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KiggTcN.jpg" data-link="https://lions-casino.onrender.com/" data-title="Lions Casino™"><a href="https://lions-casino.onrender.com/" target="_blank">Lions Casino™</a></div>
 
-    <!-- ⭐ RUEDA DE PREMIOS NUEVA -->
-    <div class="project">
-      <div class="preview-label">Vista previa</div>
-      <img src="https://iili.io/f9a9Fdx.jpg" data-link="https://giraygana-ijae.onrender.com" data-title="Rueda de Premios™">
-      <a href="https://giraygana-ijae.onrender.com" target="_blank">Rueda de Premios™</a>
-    </div>
+    <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/f9a9Fdx.jpg" data-link="https://giraygana-ijae.onrender.com" data-title="Rueda de Premios™"><a href="https://giraygana-ijae.onrender.com" target="_blank">Rueda de Premios™</a></div>
 
   </div>
 
@@ -303,7 +306,17 @@ footer {
     <div class="project"><div class="preview-label">Vista previa</div><img src="https://iili.io/KPyCnHu.jpg" data-link="https://adda-nails.onrender.com/" data-title="Adda Nails"><a href="https://adda-nails.onrender.com/" target="_blank">Adda Nails</a></div>
   </div>
 
-  <!-- 🍻 RESTOBAR / BAILABLES NUEVO -->
+  <!-- 🟣 MMG NUEVO -->
+  <h3>🎤 Artistas / Booking</h3>
+  <div class="examples gallery">
+    <div class="project">
+      <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KtXqRHQ.md.jpg" data-link="https://mmg-manager.onrender.com" data-title="MMG – Manager Music Group™">
+      <a href="https://mmg-manager.onrender.com" target="_blank">MMG – Manager Music Group™</a>
+    </div>
+  </div>
+
+  <!-- 🍻 RESTOBAR -->
   <h3>🍻 Restobar / Bailables</h3>
   <div class="examples gallery">
     <div class="project">
@@ -313,7 +326,7 @@ footer {
     </div>
   </div>
 
-  <!-- 📻 RADIOS ONLINE NUEVO -->
+  <!-- 📻 RADIOS -->
   <h3>📻 Radios Online</h3>
   <div class="examples gallery">
     <div class="project">
@@ -345,43 +358,59 @@ footer {
 
 <footer>© 2025 Ciborg347™ - Landing Pages & Web Designs</footer>
 
-<!-- LIGHTBOX -->
-<div id="lightbox" class="lightbox">
-  <span class="nav-btn prev" onclick="changeSlide(-1)">❮</span>
-  <div class="lightbox-content">
-    <img id="lightbox-img" src="">
-    <div class="caption" id="lightbox-title"></div>
-    <a id="lightbox-link" class="view-btn" href="#" target="_blank">Ver landing completa</a>
-  </div>
-  <span class="nav-btn next" onclick="changeSlide(1)">❯</span>
-</div>
-
 <script>
-const navMenu = document.getElementById("nav-links");
-const navLinks = navMenu.querySelectorAll("a");
-function toggleMenu() { navMenu.classList.toggle("active"); }
-navLinks.forEach(link => link.addEventListener("click", () => navMenu.classList.remove("active")));
+/* 🔥 CIRCUITOS ANIMADOS */
+const circuitos = document.getElementById("circuitos");
 
-// ---- LIGHTBOX ----
-const galleryItems = document.querySelectorAll(".gallery img");
-let currentIndex = 0;
-galleryItems.forEach((img, i) => { img.addEventListener("click", () => openGallery(i)); });
-function openGallery(i) {
-  currentIndex = i;
-  const img = galleryItems[i];
-  document.getElementById("lightbox-img").src = img.src;
-  document.getElementById("lightbox-title").textContent = img.dataset.title;
-  const link = document.getElementById("lightbox-link");
-  link.href = img.dataset.link;
-  link.textContent = "Ver landing completa (" + img.dataset.title + ")";
-  document.getElementById("lightbox").style.display = "flex";
+for (let i = 0; i < 25; i++) {
+  let l = document.createElement("div");
+  l.className = "linea";
+  l.style.top = Math.random() * 100 + "vh";
+  l.style.animationDelay = Math.random() * 4 + "s";
+  circuitos.appendChild(l);
 }
-function changeSlide(step) {
-  currentIndex = (currentIndex + step + galleryItems.length) % galleryItems.length;
-  openGallery(currentIndex);
+
+for (let i = 0; i < 20; i++) {
+  let p = document.createElement("div");
+  p.className = "pulso";
+  p.style.top = Math.random() * 100 + "vh";
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.animationDelay = Math.random() * 3 + "s";
+  circuitos.appendChild(p);
 }
-document.getElementById("lightbox").addEventListener("click", (e) => {
-  if (e.target.id === "lightbox") document.getElementById("lightbox").style.display = "none";
+
+/* 🔥 DRAG CON EL MOUSE (PC) */
+document.querySelectorAll('.examples').forEach(container => {
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  container.addEventListener('mousedown', e => {
+    isDown = true;
+    startX = e.pageX - container.offsetLeft;
+    scrollLeft = container.scrollLeft;
+  });
+
+  container.addEventListener('mouseleave', () => isDown = false);
+  container.addEventListener('mouseup', () => isDown = false);
+
+  container.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - container.offsetLeft;
+    container.scrollLeft = scrollLeft - (x - startX) * 1.2;
+  });
+});
+
+/* 🔥 FLECHAS INVISIBLES */
+document.querySelectorAll('.gallery').forEach(gallery => {
+  const left = gallery.querySelector('.flecha-left');
+  const right = gallery.querySelector('.flecha-right');
+
+  if (left && right) {
+    left.onclick = () => gallery.scrollBy({ left: -200, behavior: 'smooth' });
+    right.onclick = () => gallery.scrollBy({ left: 200, behavior: 'smooth' });
+  }
 });
 </script>
 
