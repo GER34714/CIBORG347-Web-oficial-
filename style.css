@@ -9,12 +9,12 @@ body {
   position: relative; /* Necesario para overlay */
 }
 
-/* 🔥 ATENUAR FONDO ULTRA OSCURO (0.85) */
+/* 🔥 ATENUAR FONDO (0.90) — ULTRA DARK PERO AÚN SE VE LEVE */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85); /* ULTRA DARK */
+  background: rgba(0, 0, 0, 0.90); /* Ultra dark, fondo muy tenue */
   backdrop-filter: blur(2px);
   z-index: -1;
 }
