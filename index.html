@@ -22,16 +22,50 @@ body {
   scroll-behavior: smooth;    
 }
 
-/* PANEL OVERLAY (AGREGADO) */
+/* ====== OVERLAY PANEL (con animación suave) ====== */
 .overlay {
   background: rgba(0, 0, 0, 0.55);
   padding: 25px;
   border-radius: 14px;
   backdrop-filter: blur(6px);
   border: 1px solid rgba(57,255,20,0.3);
-  box-shadow: 0 0 14px rgba(57,255,20,0.25);
+  box-shadow: 0 0 14px rgba(57,255,20,0.22);
   max-width: 800px;
   margin: 0 auto;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeInPanel 0.9s ease forwards;
+}
+
+@keyframes fadeInPanel {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====== LÍNEAS ANIMADAS (ESTILO APPLE) ====== */
+.line {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: showLine 0.65s ease forwards;
+}
+
+.line:nth-child(1) { animation-delay: 0.15s; }
+.line:nth-child(2) { animation-delay: 0.30s; }
+.line:nth-child(3) { animation-delay: 0.45s; }
+.line:nth-child(4) { animation-delay: 0.60s; }
+.line:nth-child(5) { animation-delay: 0.75s; }
+.line:nth-child(6) { animation-delay: 0.90s; }
+.line:nth-child(7) { animation-delay: 1.05s; }
+.line:nth-child(8) { animation-delay: 1.20s; }
+.line:nth-child(9) { animation-delay: 1.35s; }
+
+@keyframes showLine {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* NAVBAR */    
@@ -175,84 +209,162 @@ footer {
   <img src="https://iili.io/fH74EGa.md.png" alt="Ciborg347™">    
 </div>
 
+<!-- =============== QUIENES SOMOS ================== -->
 <section id="quienes">    
   <h2>¿Quiénes Somos?</h2>    
 
   <div class="overlay">
-    <p>
-      En <b>Ciborg347™</b> transformamos ideas en experiencias digitales ⚡.
-      <br><br>
-      Creamos <b>Landing Pages</b> y <b>sitios web modernos</b>,
-      <br>
-      rápidos, optimizados
-      <br>
-      y enfocados 100% en conversión.
-      <br><br>
-      Tu negocio necesita:
-      <br>• Presencia  
-      <br>• Confianza  
-      <br>• Ventas  
-      <br><br>
-      Nosotros te damos las tres. 🚀
-    </p>
+
+    <div class="line">En <b>Ciborg347™</b> transformamos ideas en experiencias digitales ⚡.</div>
+    <br>
+    <div class="line">Creamos <b>Landing Pages</b> y <b>sitios web modernos</b>,</div>
+    <div class="line">rápidos, optimizados</div>
+    <div class="line">y enfocados 100% en conversión.</div>
+    <br>
+    <div class="line">Tu negocio necesita:</div>
+    <div class="line">• Presencia</div>
+    <div class="line">• Confianza</div>
+    <div class="line">• Ventas</div>
+    <br>
+    <div class="line">Nosotros te damos las tres. 🚀</div>
+
   </div>
 
 </section>
 
+<!-- =============== EJEMPLOS ================== -->
 <section id="ejemplos">    
   <h2>Ejemplos de Landings</h2>
-  <!-- tu portfolio queda intacto -->
-  ...
+
+  <h3>💅 MANICURIA & ESTETICAS </h3>
+  <div class="examples gallery">
+    <div class="project">
+      <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KPyCnHu.jpg" data-link="https://adda-nails.onrender.com/" data-title="Adda Nails">
+      <a href="https://adda-nails.onrender.com/" target="_blank">Adda Nails</a>
+    </div>
+  </div>
+
+  <h3>💈 Barberías</h3>
+  <div class="examples gallery">
+    <div class="project"> <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KPyvEcx.jpg" data-link="https://barberia-elbebu.onrender.com/" data-title="Barber 99">
+      <a href="https://barberia-elbebu.onrender.com/" target="_blank">Barber 99</a>
+    </div>
+
+    <div class="project"> <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KPyUCn1.jpg" data-link="https://barber-shop-rodri.onrender.com/" data-title="Barber Shop Rodri">
+      <a href="https://barber-shop-rodri.onrender.com/" target="_blank">Barber Shop Rodri</a>
+    </div>
+  </div>
+
+  <h3>🍰 Repostería / Food</h3>
+  <div class="examples gallery">
+    <div class="project">
+      <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/fF5pLGf.jpg" data-link="https://dulce-juana.onrender.com/" data-title="Dulce Juana™">
+      <a href="https://dulce-juana.onrender.com/" target="_blank">Dulce Juana™</a>
+    </div>
+  </div>
+
+  <h3>🍻 Restobar / Bailables</h3>
+  <div class="examples gallery">
+    <div class="project">
+      <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/f9a9K5Q.jpg" data-link="https://tio-sergio.onrender.com" data-title="Tío Sergio™">
+      <a href="https://tio-sergio.onrender.com" target="_blank">Tío Sergio™</a>
+    </div>
+  </div>
+
+  <h3>📻 Radios Online</h3>
+  <div class="examples gallery">
+    <div class="project">
+      <div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/f9an4yX.jpg" data-link="https://radioimagen.onrender.com" data-title="Radio Imagen™">
+      <a href="https://radioimagen.onrender.com" target="_blank">Radio Imagen™</a>
+    </div>
+  </div>
+
+  <h3>🎰 Casinos</h3>
+  <div class="examples gallery">
+
+    <div class="project"><div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KPygQXS.jpg" data-link="https://facucasino.onrender.com/" data-title="Facu Casino™">
+      <a href="https://facucasino.onrender.com/" target="_blank">Facu Casino™</a>
+    </div>
+
+    <div class="project"><div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KPyrMj2.jpg" data-link="https://dragon-casino.onrender.com/" data-title="Dragon Casino™">
+      <a href="https://dragon-casino.onrender.com/" target="_blank">Dragon Casino™</a>
+    </div>
+
+    <div class="project"><div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KPyDVHP.jpg" data-link="https://dinasty-bet.onrender.com/" data-title="Dynasty Bet™">
+      <a href="https://dinasty-bet.onrender.com/" target="_blank">Dynasty Bet™</a>
+    </div>
+
+    <div class="project"><div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KigNdVS.jpg" data-link="https://giraygana-fortunaplay.onrender.com/" data-title="Gira y Gana™">
+      <a href="https://giraygana-fortunaplay.onrender.com/" target="_blank">Gira y Gana™</a>
+    </div>
+
+    <div class="project"><div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/Kigv3Ij.jpg" data-link="https://ganamostodosjuntos.onrender.com/" data-title="Fortuna Play™">
+      <a href="https://ganamostodosjuntos.onrender.com/" target="_blank">Fortuna Play™</a>
+    </div>
+
+    <div class="project"><div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/KiggTcN.jpg" data-link="https://lions-casino.onrender.com/" data-title="Lions Casino™">
+      <a href="https://lions-casino.onrender.com/" target="_blank">Lions Casino™</a>
+    </div>
+
+    <div class="project"><div class="preview-label">Vista previa</div>
+      <img src="https://iili.io/f9a9Fdx.jpg" data-link="https://giraygana-ijae.onrender.com" data-title="Rueda de Premios™">
+      <a href="https://giraygana-ijae.onrender.com" target="_blank">Rueda de Premios™</a>
+    </div>
+
+  </div>
 </section>
 
+<!-- =============== PRESUPUESTO ================== -->
 <section id="valores">    
   <h2>Presupuesto Personalizado</h2>    
 
   <div class="overlay">
-    <p>
-      💼 En <b>Ciborg347™</b> cada cliente es único,
-      <br>
-      y su proyecto también.
-      <br><br>
 
-      No usamos plantillas vacías
-      <br>
-      ni precios estándar.
-      <br><br>
+    <div class="line">💼 En <b>Ciborg347™</b> cada cliente es único,</div>
+    <div class="line">y su proyecto también.</div>
+    <br>
 
-      <b>Creemos tu web a medida</b>,
-      <br>
-      pensada según tu negocio,
-      <br>
-      tu estilo
-      <br>
-      y tu público.
-      <br><br>
+    <div class="line">No usamos plantillas vacías</div>
+    <div class="line">ni precios estándar.</div>
+    <br>
 
-      🚀 Vos contanos qué querés lograr,
-      <br>
-      nosotros te enviamos una propuesta profesional,
-      <br>
-      clara y sin vueltas.
-      <br><br>
+    <div class="line"><b>Creemos tu web a medida</b>,</div>
+    <div class="line">pensada según tu negocio,</div>
+    <div class="line">tu estilo</div>
+    <div class="line">y tu público.</div>
+    <br>
 
-      💬 <b>Pedí tu presupuesto personalizado</b>
-      <br>
-      y descubrí lo que una web bien hecha
-      <br>
-      puede hacer por tu marca.
-      <br><br>
+    <div class="line">🚀 Vos contanos qué querés lograr,</div>
+    <div class="line">nosotros te enviamos una propuesta profesional,</div>
+    <div class="line">clara y sin vueltas.</div>
+    <br>
 
-      ⚡ <b>Ciborg347™</b> —
-      <br>
-      donde el diseño y la estrategia
-      <br>
-      se combinan para generar resultados reales.
-    </p>
+    <div class="line">💬 <b>Pedí tu presupuesto personalizado</b></div>
+    <div class="line">y descubrí lo que una web bien hecha</div>
+    <div class="line">puede hacer por tu marca.</div>
+    <br>
+
+    <div class="line">⚡ <b>Ciborg347™</b> —</div>
+    <div class="line">donde el diseño y la estrategia</div>
+    <div class="line">se combinan para generar resultados reales.</div>
+
   </div>
 
 </section>
 
+<!-- =============== CONTACTO ================== -->
 <section id="contacto">    
   <h2>Contacto</h2>    
   <div class="contact-links">    
@@ -285,6 +397,7 @@ const navLinks = navMenu.querySelectorAll("a");
 function toggleMenu() { navMenu.classList.toggle("active"); }    
 navLinks.forEach(link => link.addEventListener("click", () => navMenu.classList.remove("active")));    
 
+// ---- LIGHTBOX ----    
 const galleryItems = document.querySelectorAll(".gallery img");    
 let currentIndex = 0;    
 galleryItems.forEach((img, i) => { img.addEventListener("click", () => openGallery(i)); });    
