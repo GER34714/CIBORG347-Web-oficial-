@@ -22,6 +22,18 @@ body {
   scroll-behavior: smooth;    
 }
 
+/* PANEL OVERLAY (AGREGADO) */
+.overlay {
+  background: rgba(0, 0, 0, 0.55);
+  padding: 25px;
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(57,255,20,0.3);
+  box-shadow: 0 0 14px rgba(57,255,20,0.25);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 /* NAVBAR */    
 nav {    
   position: fixed; top: 0; width: 100%;    
@@ -66,39 +78,7 @@ nav ul li a:hover { color: #00f7ff; }
 section { padding: 80px 20px; max-width: 1100px; margin: auto; }    
 h2 { font-size: 2rem; margin-bottom: 20px; color: #39ff14; letter-spacing: 2px; }
 h3 { color: #00f7ff; margin-bottom: 15px; }
-
-/* PANEL NEON */
-.panel {
-  background: rgba(0,0,0,0.55);
-  padding: 35px;
-  border-radius: 18px;
-  border: 1px solid #39ff14;
-  box-shadow: 0 0 15px #39ff14;
-  backdrop-filter: blur(6px);
-}
-
-/* ANIMACIÓN LÍNEA POR LÍNEA */
-.text-block { margin: 20px 0; }
-.line {
-  opacity: 0;
-  transform: translateY(12px);
-  animation: showLine 0.7s ease forwards;
-}
-.line:nth-child(1) { animation-delay: 0.1s; }
-.line:nth-child(2) { animation-delay: 0.25s; }
-.line:nth-child(3) { animation-delay: 0.4s; }
-.line:nth-child(4) { animation-delay: 0.6s; }
-.line:nth-child(5) { animation-delay: 0.8s; }
-.line:nth-child(6) { animation-delay: 1s; }
-.line:nth-child(7) { animation-delay: 1.2s; }
-.line:nth-child(8) { animation-delay: 1.4s; }
-
-@keyframes showLine {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+p { font-size: 1.1rem; line-height: 1.6; color: #ccc; }
 
 /* GALERÍA */    
 .examples {    
@@ -114,7 +94,47 @@ h3 { color: #00f7ff; margin-bottom: 15px; }
   position: relative;    
 }    
 .project:hover { transform: scale(1.05); }    
+.preview-label {    
+  position: absolute; top: -12px;    
+  width: 100%; text-align: center;    
+  font-size: 0.7rem; color: rgba(57,255,20,0.7);    
+}    
+.project img {    
+  width: 100%; height: 110px; object-fit: contain;    
+  background: rgba(0,0,0,0.6); border-radius: 8px;    
+  border: 2px solid #39ff14; cursor: pointer;    
+}    
+.project a {    
+  display: block; margin-top: 8px; color: #39ff14;    
+  font-size: 0.85rem; font-weight: bold;    
+}    
 
+/*********** LIGHTBOX ***********/    
+.lightbox {    
+  display: none; position: fixed; inset: 0;    
+  background: rgba(0,0,0,0.9);    
+  z-index: 2000;    
+  align-items: center; justify-content: center; flex-direction: column;    
+}    
+.lightbox-content {    
+  background: rgba(15,15,15,0.9);    
+  padding: 20px 30px; border-radius: 16px;    
+  max-width: 420px; text-align: center;    
+  box-shadow: 0 0 25px #39ff14;    
+}    
+.lightbox-content img {    
+  width: 100%; max-height: 300px;    
+  object-fit: contain; border-radius: 10px;    
+  border: 2px solid #39ff14;    
+}    
+.lightbox .view-btn {    
+  margin-top: 10px; display: inline-block;    
+  background: #39ff14; color: #000;    
+  padding: 8px 20px; border-radius: 25px;    
+  font-weight: bold; text-decoration: none;    
+}
+
+/* CONTACTO */    
 .contact-links {    
   display: flex; flex-direction: column; gap: 10px;    
   align-items: center; margin-top: 20px;    
@@ -124,10 +144,14 @@ h3 { color: #00f7ff; margin-bottom: 15px; }
   display: flex; align-items: center;    
   gap: 8px; text-decoration: none;    
 }    
+.contact-links a:hover { color: #00f7ff; }    
+.contact-links img { width: 22px; filter: drop-shadow(0 0 5px #39ff14); }
 
+/* WHATSAPP */    
 .whatsapp-float { position: fixed; bottom: 60px; right: 22px; z-index: 999; }    
 .whatsapp-float img { width: 64px; border-radius: 50%; }
 
+/* FOOTER */    
 footer {    
   background: rgba(255,255,255,0.05);    
   padding: 20px; font-size: 0.9rem; color: #777;    
@@ -151,60 +175,90 @@ footer {
   <img src="https://iili.io/fH74EGa.md.png" alt="Ciborg347™">    
 </div>
 
-<!-- ========================== -->
-<!-- QUIÉNES SOMOS (PANEL NEON) -->
-<!-- ========================== -->
-
 <section id="quienes">    
-  <div class="panel">
-    <h2>¿Quiénes Somos?</h2>
+  <h2>¿Quiénes Somos?</h2>    
 
-    <div class="text-block">
-      <div class="line">En <b>Ciborg347™</b> transformamos ideas</div>
-      <div class="line">en experiencias digitales ⚡.</div>
-      <div class="line">Creamos Landing Pages y sitios web</div>
-      <div class="line">modernos, rápidos y optimizados</div>
-      <div class="line">para convertir de verdad.</div>
-      <div class="line">Tu negocio necesita presencia, confianza y ventas…</div>
-      <div class="line">Nosotros te damos las tres. 🚀</div>
-    </div>
+  <div class="overlay">
+    <p>
+      En <b>Ciborg347™</b> transformamos ideas en experiencias digitales ⚡.
+      <br><br>
+      Creamos <b>Landing Pages</b> y <b>sitios web modernos</b>,
+      <br>
+      rápidos, optimizados
+      <br>
+      y enfocados 100% en conversión.
+      <br><br>
+      Tu negocio necesita:
+      <br>• Presencia  
+      <br>• Confianza  
+      <br>• Ventas  
+      <br><br>
+      Nosotros te damos las tres. 🚀
+    </p>
   </div>
+
 </section>
 
 <section id="ejemplos">    
   <h2>Ejemplos de Landings</h2>
-
-  <!-- TODO tu portfolio queda igual, no lo toqué -->
-  <!-- ... -->
+  <!-- tu portfolio queda intacto -->
+  ...
 </section>
 
-<!-- ========================== -->
-<!-- PRESUPUESTO (PANEL NEON) -->
-<!-- ========================== -->
-
 <section id="valores">    
-  <div class="panel">
-    <h2>Presupuesto Personalizado</h2>
+  <h2>Presupuesto Personalizado</h2>    
 
-    <div class="text-block">
-      <div class="line">💼 En <b>Ciborg347™</b> cada cliente es único</div>
-      <div class="line">y su proyecto también.</div>
-      <div class="line">No usamos plantillas ni precios estándar.</div>
-      <div class="line">Creamos tu web a medida,</div>
-      <div class="line">pensada según tu negocio y tu público.</div>
-      <div class="line">🚀 Contanos qué necesitás</div>
-      <div class="line">y te enviamos una propuesta profesional.</div>
-      <div class="line">⚡ Ciborg347™ — diseño + estrategia = resultados reales.</div>
-    </div>
+  <div class="overlay">
+    <p>
+      💼 En <b>Ciborg347™</b> cada cliente es único,
+      <br>
+      y su proyecto también.
+      <br><br>
+
+      No usamos plantillas vacías
+      <br>
+      ni precios estándar.
+      <br><br>
+
+      <b>Creemos tu web a medida</b>,
+      <br>
+      pensada según tu negocio,
+      <br>
+      tu estilo
+      <br>
+      y tu público.
+      <br><br>
+
+      🚀 Vos contanos qué querés lograr,
+      <br>
+      nosotros te enviamos una propuesta profesional,
+      <br>
+      clara y sin vueltas.
+      <br><br>
+
+      💬 <b>Pedí tu presupuesto personalizado</b>
+      <br>
+      y descubrí lo que una web bien hecha
+      <br>
+      puede hacer por tu marca.
+      <br><br>
+
+      ⚡ <b>Ciborg347™</b> —
+      <br>
+      donde el diseño y la estrategia
+      <br>
+      se combinan para generar resultados reales.
+    </p>
   </div>
+
 </section>
 
 <section id="contacto">    
   <h2>Contacto</h2>    
   <div class="contact-links">    
-    <a href="https://wa.me/541164499481" target="_blank">WhatsApp</a>    
-    <a href="mailto:ciborg347@gmail.com">Email</a>    
-    <a href="https://instagram.com/ciborg347" target="_blank">Instagram</a>    
+    <a href="https://wa.me/541164499481" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> WhatsApp</a>    
+    <a href="mailto:ciborg347@gmail.com"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png"> Email</a>    
+    <a href="https://instagram.com/ciborg347" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"> Instagram</a>    
   </div>    
 </section>
 
@@ -213,6 +267,48 @@ footer {
 </a>
 
 <footer>© 2025 Ciborg347™ - Landing Pages & Web Designs</footer>
+
+<!-- LIGHTBOX -->    
+<div id="lightbox" class="lightbox">    
+  <span class="nav-btn prev" onclick="changeSlide(-1)">❮</span>    
+  <div class="lightbox-content">    
+    <img id="lightbox-img" src="">    
+    <div class="caption" id="lightbox-title"></div>    
+    <a id="lightbox-link" class="view-btn" href="#" target="_blank">Ver landing completa</a>    
+  </div>    
+  <span class="nav-btn next" onclick="changeSlide(1)">❯</span>    
+</div>
+
+<script>    
+const navMenu = document.getElementById("nav-links");    
+const navLinks = navMenu.querySelectorAll("a");    
+function toggleMenu() { navMenu.classList.toggle("active"); }    
+navLinks.forEach(link => link.addEventListener("click", () => navMenu.classList.remove("active")));    
+
+const galleryItems = document.querySelectorAll(".gallery img");    
+let currentIndex = 0;    
+galleryItems.forEach((img, i) => { img.addEventListener("click", () => openGallery(i)); });    
+
+function openGallery(i) {    
+  currentIndex = i;    
+  const img = galleryItems[i];    
+  document.getElementById("lightbox-img").src = img.src;    
+  document.getElementById("lightbox-title").textContent = img.dataset.title;    
+  const link = document.getElementById("lightbox-link");    
+  link.href = img.dataset.link;    
+  link.textContent = "Ver landing completa (" + img.dataset.title + ")";    
+  document.getElementById("lightbox").style.display = "flex";    
+}    
+
+function changeSlide(step) {    
+  currentIndex = (currentIndex + step + galleryItems.length) % galleryItems.length;    
+  openGallery(currentIndex);    
+}    
+
+document.getElementById("lightbox").addEventListener("click", (e) => {    
+  if (e.target.id === "lightbox") document.getElementById("lightbox").style.display = "none";    
+});    
+</script>
 
 </body>    
 </html>
