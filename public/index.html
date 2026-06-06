@@ -16,6 +16,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  
+  <!-- ✅ GOOGLE ANALYTICS (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2S0VWZCNY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z2S0VWZCNY');
+  </script>
+  
   <style>
     :root {
       --bg: #0a0a0f;
@@ -1459,11 +1469,32 @@ setWaLinks();
 const heroObserver = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting && !countersStarted && projectsData.length > 0) { countersStarted = true; animateCounter(document.getElementById("statProjects"), projectsData.length, '+'); animateCounter(document.getElementById("statHours"), 24, 'hs'); animateCounter(document.getElementById("statCode"), 100, '%'); } }); }, { threshold: 0.3 });
 if (document.querySelector(".hero")) heroObserver.observe(document.querySelector(".hero"));
 
+// ✅ CÓDIGO PARA OCULTAR BOTÓN DE WHATSAPP EN EL FOOTER
+function setupWhatsAppVisibility() {
+  const whatsappButton = document.querySelector('.waFloat');
+  const footer = document.querySelector('footer');
+  
+  if (!whatsappButton || !footer) return;
+  
+  const observerFooter = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        whatsappButton.classList.add('hidden');
+      } else {
+        whatsappButton.classList.remove('hidden');
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  observerFooter.observe(footer);
+}
+
 // Inicializar todo
 loadProjects();
 loadPlans();
 loadFaqs();
 loadReviews();
+setupWhatsAppVisibility();
 
 // Matrix canvas
 (function() {
