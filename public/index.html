@@ -1135,13 +1135,12 @@
       <h2>Hablemos de <em>tu proyecto</em></h2>
     </div>
     <div class="contact-form-section fade-in-right">
-      <form class="contact-form" id="contactForm" action="https://formsubmit.co/ciborg347@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Nuevo lead desde Ciborg 347">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="text" name="nombre" placeholder="Tu nombre *" required>
-        <input type="email" name="email" placeholder="Tu email *" required>
-        <input type="tel" name="telefono" placeholder="Tu WhatsApp (opcional)">
-        <textarea name="mensaje" rows="3" placeholder="Contame sobre tu proyecto..." required></textarea>
+      <!-- ✅ FORMULARIO MODIFICADO - AHORA ENVÍA A WHATSAPP -->
+      <form class="contact-form" id="contactFormWhatsapp">
+        <input type="text" id="waNombre" placeholder="Tu nombre *" required>
+        <input type="email" id="waEmail" placeholder="Tu email *" required>
+        <input type="tel" id="waTelefono" placeholder="Tu WhatsApp (opcional)">
+        <textarea id="waMensaje" rows="3" placeholder="Contame sobre tu proyecto..." required></textarea>
         <button type="submit" class="btn btn--primary">Enviar mensaje →</button>
       </form>
     </div>
@@ -1176,6 +1175,24 @@ const DEFAULT_WA = "5491164499481";
 const sb = window.supabase?.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 console.log("🔌 Conectando a Supabase...");
+
+// ✅ NUEVA FUNCIÓN PARA EL FORMULARIO DE WHATSAPP
+document.getElementById('contactFormWhatsapp')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const nombre = document.getElementById('waNombre').value;
+  const email = document.getElementById('waEmail').value;
+  const telefono = document.getElementById('waTelefono').value;
+  const mensaje = document.getElementById('waMensaje').value;
+  
+  const texto = `Hola CIBORG 347! 👋\n\n*Nombre:* ${nombre}\n*Email:* ${email}\n*WhatsApp:* ${telefono || "No especificado"}\n\n*Consulta:*\n${mensaje}`;
+  
+  const url = `https://wa.me/${DEFAULT_WA}?text=${encodeURIComponent(texto)}`;
+  window.open(url, '_blank');
+  
+  // Opcional: limpiar formulario
+  this.reset();
+});
 
 // Variables globales
 let projectsData = [];
@@ -1251,9 +1268,13 @@ function renderFeatured() {
   const featuredProjects = projectsData.filter(p => p.featured === true && p.status === "published");
   const featuredSection = document.getElementById("featuredSection");
   const featuredGrid = document.getElementById("featuredGrid");
-  if (featuredProjects.length === 0) { if (featuredSection) featuredSection.style.display = "none"; return; }
+  if (featuredProjects.length === 0) { 
+    if (featuredSection) featuredSection.style.display = "none"; 
+    return; 
+  }
   if (featuredSection) featuredSection.style.display = "block";
-  if (featuredGrid) { featuredGrid.innerHTML = featuredProjects.slice(0, 6).map(p => `<div class="featuredCard" data-project='${JSON.stringify(p)}'><img class="featuredCard__image" src="${esc(p.image_url)}" alt="${esc(p.title)}" loading="lazy" /><div class="featuredCard__content"><div class="featuredCard__cat">${esc(p.categories?.name || "Destacado")}</div><div class="featuredCard__title">${esc(p.title)}</div><div class="featuredCard__desc">${esc(p.short_description || "").substring(0, 80)}${(p.short_description || "").length > 80 ? '...' : ''}</div></div></div>`).join("");
+  if (featuredGrid) { 
+    featuredGrid.innerHTML = featuredProjects.slice(0, 6).map(p => `<div class="featuredCard" data-project='${JSON.stringify(p)}'><img class="featuredCard__image" src="${esc(p.image_url)}" alt="${esc(p.title)}" loading="lazy" /><div class="featuredCard__content"><div class="featuredCard__cat">${esc(p.categories?.name || "Destacado")}</div><div class="featuredCard__title">${esc(p.title)}</div><div class="featuredCard__desc">${esc(p.short_description || "").substring(0, 80)}${(p.short_description || "").length > 80 ? '...' : ''}</div></div></div>`).join("");
     document.querySelectorAll(".featuredCard").forEach(card => { const project = JSON.parse(card.getAttribute("data-project")); card.addEventListener("click", () => openModal(project)); });
   }
 }
