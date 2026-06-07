@@ -1265,7 +1265,7 @@ window.closeModal = function() { const modal = document.getElementById("modalOve
 
 function renderFeatured() {
   // SOLO proyectos destacados que además sean published
-  const featuredProjects = projectsData.filter(p => p.featured === true && p.status === "published");
+  const featuredProjects = projectsData.filter(p => p.featured === true && (p.status === "published" || p.status === "featured"));
   const featuredSection = document.getElementById("featuredSection");
   const featuredGrid = document.getElementById("featuredGrid");
   if (featuredProjects.length === 0) { 
