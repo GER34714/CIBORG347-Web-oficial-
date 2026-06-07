@@ -1,4 +1,4 @@
-// Inicialización de Supabase con autenticación
+// Inicializacion de Supabase con autenticacion
 if (window.CIBORG_CONFIG && window.supabase) {
   const SUPABASE_URL = window.CIBORG_CONFIG.SUPABASE_URL;
   const SUPABASE_KEY = window.CIBORG_CONFIG.SUPABASE_KEY;
@@ -12,8 +12,9 @@ if (window.CIBORG_CONFIG && window.supabase) {
     }
   });
   
-  console.log("✅ Supabase reinicializado con autenticación");
-}/* =========================
+  console.log("✅ Supabase reinicializado con autenticacion");
+}
+/* =========================
    STATE
 ========================= */
 let currentView = "dashboard";
